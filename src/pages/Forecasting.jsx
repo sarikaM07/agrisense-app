@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { simpleForecast } from '../utils/forecasting';
+// import { simpleForecast } from '../utils/forecasting';
 
 export default function Forecasting(){
   const [input,setInput] = useState('2.3,2.7,3.1,2.9,3.5');

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ImageUploader from '../components/ImageUploader';
-import { predictImage } from '../utils/mockModel';
+// import { predictImage } from '../utils/mockModel';
 
 export default function DiseaseDetection(){
   const [result, setResult] = useState(null);

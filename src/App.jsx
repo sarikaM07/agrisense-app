@@ -9,8 +9,8 @@ import FieldAnalysis from './pages/FieldAnalysis';
 import Forecasting from './pages/Forecasting';
 import Profile from './pages/Profile';
 import LoginForm from './components/LoginForm';
-import { AuthProvider } from './auth/AuthContext';
-import ProtectedRoute from './auth/ProtectedRoute';
+import { AuthProvider } from "./auth/AuthContext";
+
 
 export default function App(){
   return (
