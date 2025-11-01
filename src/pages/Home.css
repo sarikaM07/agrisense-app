@@ -1,146 +1,393 @@
-/* 🌿 HOME PAGE GLOBAL STYLES */
-.home-container {
-  font-family: 'Poppins', sans-serif;
-  color: #fff;
-  background-color: #0a2e23;
-  overflow-x: hidden;
+/* src/pages/Home.css */
+
+/* Variables (for consistent theming) */
+:root {
+  --dark-green: #38761d;
+  --light-green-accent: #a9e083;
+  --text-color-light: #f0f0f0;
+  --card-bg-light: rgba(255, 255, 255, 0.2);
+  --card-border-light: rgba(255, 255, 255, 0.3);
+
+  /* 💥 MODIFIED/ADDED: Transparent Green for Key Features/Stories BG */
+  --transparent-light-green: rgba(169, 224, 131, 0.2);
+  --card-border-dark: rgba(255, 255, 255, 0.15);
+  --card-bg-dark: rgba(0, 0, 0, 0.2);
 }
 
-/* 🌾 HERO SECTION */
-.hero-section {
-  position: relative;
-  height: 90vh;
-  background-image: url('https://images.unsplash.com/photo-1592806083617-9f7deafdf2c1?auto=format&fit=crop&w=1600&q=60');
+/* --- Base Body and Container Styling --- */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f8f8;
+}
+
+.home-container {
+  min-height: 100vh;
   background-size: cover;
   background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-attachment: fixed;
+  color: var(--text-color-light);
+  padding-bottom: 50px;
+  position: relative;
+  /* Dark Overlay for readability */
+  background-blend-mode: darken;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-.hero-overlay {
-  background: rgba(0, 0, 0, 0.55);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-content {
-  text-align: center;
-  padding: 0 20px;
+/* --- Hero Section & Content Styling --- */
+.hero-section {
+  padding: 100px 8% 50px;
+  text-align: left;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .hero-title {
-  font-size: 2.8rem;
+  font-size: 4.5em;
   font-weight: 700;
-  margin-bottom: 15px;
-  color:black
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.hero-subtitle {
+  font-size: 1.4em;
+  font-weight: 300;
+  margin-bottom: 40px;
+  max-width: 700px;
+  color: #e0e0e0;
 }
 
 .hero-description {
-  font-size: 1.1rem;
-  margin-bottom: 30px;
-  color: green;
+  max-width: 750px;
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(3px);
 }
 
-/* 🌿 STATS GRID */
-.stats-grid {
+.hero-description p {
+  margin-bottom: 15px;
+  color: #e0e0e0;
+}
+
+.agrisense-benefits {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.agrisense-benefits li {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  color: var(--light-green-accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* --- Why Choose AgriSense Section (Glassmorphism Cards) --- */
+.why-choose-section {
+  text-align: center;
+  padding: 80px 8%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-choose-title {
+  font-size: 2.8em;
+  font-weight: 600;
+  margin-bottom: 60px;
+  color: white;
+}
+
+.stats-cards-container {
   display: flex;
   justify-content: center;
-  gap: 25px;
+  gap: 30px;
   flex-wrap: wrap;
 }
+
 .stat-card {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 15px;
-  padding: 25px 20px;
-  width: 220px;
-  text-align: center;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  background-color: var(--card-bg-light);
   backdrop-filter: blur(8px);
-  transition: all 0.3s ease;
-}
-.stat-card title {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: green;
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--card-border-light);
+  border-radius: 15px;
+  padding: 30px;
+  width: 280px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 🌱 FEATURES SECTION */
-.features-section {
-  background: #10442d;
-  padding: 70px 30px;
+.stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+.stat-number {
+  font-size: 3.5em;
+  font-weight: 700;
+  color: var(--light-green-accent);
+}
+
+.stat-description {
+  font-size: 1.1em;
+  color: #e0e0e0;
+}
+
+/* --- Marquee/Scrolling Text Section (REMOVED) --- */
+/* The Marquee styles have been entirely removed to clean up the CSS and remove the feature. */
+
+
+/* --- Fade-in-up Animation Keyframes --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Animation Delays */
+.delay-1 {
+  animation-delay: 0.2s;
+}
+
+.delay-2 {
+  animation-delay: 0.4s;
+}
+
+.delay-3 {
+  animation-delay: 0.6s;
+}
+
+.delay-4 {
+  animation-delay: 0.8s;
+}
+
+.delay-5 {
+  animation-delay: 1.0s;
+}
+
+.delay-6 {
+  animation-delay: 1.2s;
+}
+
+.delay-7 {
+  animation-delay: 1.4s;
+}
+
+.delay-8 {
+  animation-delay: 1.6s;
+}
+
+.delay-9 {
+  animation-delay: 1.8s;
+}
+
+
+/* --- ADDITIONAL CONTENT SECTION (No Change) --- */
+.additional-content-section {
+  padding: 80px 8%;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-color-light);
+
+  /* Contrasting background */
+  background-color: rgba(56, 118, 29, 0.9);
+  /* Dark Green with 90% opacity */
+  border-radius: 15px;
+  margin-top: 50px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.section-heading {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.section-text {
+  font-size: 1.15em;
+  line-height: 1.7;
+  margin-bottom: 40px;
+  color: #e0e0e0;
+  padding: 0 20px;
+}
+
+/* --- CTA Button (Explore Features) --- */
+.cta-button-wrapper {
+  margin-top: 30px;
+}
+
+.main-cta-button {
+  background-color: var(--light-green-accent);
+  /* Light Green */
+  color: var(--dark-green);
+  padding: 15px 35px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2em;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(169, 224, 131, 0.5);
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-cta-button:hover {
+  background-color: #8ccf61;
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(169, 224, 131, 0.7);
+}
+
+
+/* --- NEW: Key Features Section Styling (LIGHT & TRANSPARENT) --- */
+.key-features-container {
+  /* Transparent background */
+  background-color: var(--transparent-light-green);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  color: white;
+  padding: 80px 8%;
   text-align: center;
 }
 
 .features-title {
-  font-size: 2rem;
-  margin-bottom: 40px;
+  color: white;
+  margin-bottom: 60px;
 }
 
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+.features-cards-wrapper {
+  display: flex;
+  justify-content: center;
   gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .feature-card {
-  background: #155d3b;
-  padding: 25px;
-  border-radius: 15px;
-  transition: 0.3s;
+  /* Transparent Card Background (Glass effect) */
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 35px;
+  width: 300px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .feature-card:hover {
-  background: #1e7248;
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  border-color: var(--light-green-accent);
+  background-color: rgba(255, 255, 255, 0.15);
+  /* Hover par thoda zyada white */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* 🌾 FOOTER */
-.footer {
-  background: #0b3d2e;
-  padding: 50px 30px 20px;
-  color: #ccc;
+.feature-icon {
+  font-size: 3em;
+  color: var(--light-green-accent);
+  margin-bottom: 20px;
 }
 
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 40px;
+.card-title {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: white;
 }
 
-.footer-logo h2 {
-  color: #fff;
+.card-description {
+  font-size: 1em;
+  color: #cccccc;
+  line-height: 1.5;
 }
 
-.footer-links ul {
-  list-style: none;
-  padding: 0;
-}
+/* --- Stories Section Styling (Background Fixed) --- */
+.stories-section {
+  /* Background Key Features ke transparent BG ke saath merged hai */
+  background-color: var(--transparent-light-green);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 
-.footer-links li {
-  margin: 8px 0;
-}
-
-.footer-links a {
-  color: #ccc;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.footer-links a:hover {
-  color: #fff;
-}
-
-.footer-bottom {
+  padding: 60px 8%;
   text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-  border-top: 1px solid #155d3b;
-  padding-top: 15px;
-  color:white;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stories-title {
+  font-size: 2.5em;
+  color: white;
+  margin-bottom: 40px;
+}
+
+.rating-placeholder {
+  font-size: 2em;
+  color: gold;
+}
+
+
+/* --- RESPONSIVENESS ADJUSTMENTS --- */
+
+@media (max-width: 992px) {
+  .key-features-container {
+    padding: 60px 5%;
+  }
+
+  .features-cards-wrapper {
+    gap: 20px;
+  }
+
+  .feature-card {
+    width: 45%;
+    /* Two cards per row on tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .additional-content-section {
+    padding: 40px 4%;
+    border-radius: 0;
+  }
+
+  .section-text {
+    padding: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .feature-card {
+    width: 90%;
+    /* Single card per row on mobile */
+    max-width: 350px;
+  }
+
+  .features-title,
+  .stories-title {
+    font-size: 2em;
+  }
 }
