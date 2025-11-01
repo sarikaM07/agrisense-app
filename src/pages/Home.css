@@ -1,0 +1,146 @@
+/* 🌿 HOME PAGE GLOBAL STYLES */
+.home-container {
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  background-color: #0a2e23;
+  overflow-x: hidden;
+}
+
+/* 🌾 HERO SECTION */
+.hero-section {
+  position: relative;
+  height: 90vh;
+  background-image: url('https://images.unsplash.com/photo-1592806083617-9f7deafdf2c1?auto=format&fit=crop&w=1600&q=60');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.55);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color:black
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: green;
+}
+
+/* 🌿 STATS GRID */
+.stats-grid {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+.stat-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 25px 20px;
+  width: 220px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+.stat-card title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: green;
+}
+
+/* 🌱 FEATURES SECTION */
+.features-section {
+  background: #10442d;
+  padding: 70px 30px;
+  text-align: center;
+}
+
+.features-title {
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background: #155d3b;
+  padding: 25px;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  background: #1e7248;
+  transform: translateY(-5px);
+}
+
+/* 🌾 FOOTER */
+.footer {
+  background: #0b3d2e;
+  padding: 50px 30px 20px;
+  color: #ccc;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-logo h2 {
+  color: #fff;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin: 8px 0;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  border-top: 1px solid #155d3b;
+  padding-top: 15px;
+  color:white;
+}

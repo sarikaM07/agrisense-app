@@ -1,0 +1,110 @@
+/* 🌿 LOGIN PAGE CONTAINER */
+.container {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: 
+    linear-gradient(180deg, rgba(20, 80, 50, 0.7), rgba(10, 40, 25, 0.85)),
+    url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1920&q=80");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 🌸 LOGIN FORM */
+.form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px 45px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* 🧩 FORM HEADING */
+.form h2 {
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #c8facc;
+  letter-spacing: 1px;
+}
+
+/* ✉️ LABELS */
+.form label {
+  text-align: left;
+  font-weight: 500;
+  font-size: 15px;
+  margin: 10px 0 6px 4px;
+  color: #e0ffe0;
+}
+
+/* 🔤 INPUT FIELDS */
+.form input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form input:focus {
+  border-color: #8affb8;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 8px rgba(138, 255, 184, 0.6);
+}
+
+/* 🔘 SUBMIT BUTTON */
+.form button {
+  margin-top: 25px;
+  padding: 12px;
+  background: linear-gradient(90deg, #3ca55c, #b5ac49);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form button:hover {
+  background: linear-gradient(90deg, #4ed27a, #cddc39);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* 📜 FOOTNOTE */
+.form p {
+  font-size: 13px;
+  color: #d8ffd8;
+  margin-top: 15px;
+  opacity: 0.9;
+}
+
+/* 📱 RESPONSIVE DESIGN */
+@media (max-width: 480px) {
+  .form {
+    padding: 30px 25px;
+  }
+  .form h2 {
+    font-size: 24px;
+  }
+}

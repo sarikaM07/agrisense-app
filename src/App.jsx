@@ -10,6 +10,8 @@ import Forecasting from './pages/Forecasting';
 import Profile from './pages/Profile';
 import LoginForm from './components/LoginForm';
 import { AuthProvider } from "./auth/AuthContext";
+import ProtectedRoute from './auth/ProtectedRoute';
+import MapView from './pages/MapView';
 
 
 export default function App(){
@@ -28,6 +30,11 @@ export default function App(){
           <Route path="/field" element={<ProtectedRoute><FieldAnalysis/></ProtectedRoute>} />
           <Route path="/forecast" element={<ProtectedRoute><Forecasting/></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
+          
+
+
+          <Route path="/map" element={<MapView />} />
+
         </Routes>
       </Router>
     </AuthProvider>

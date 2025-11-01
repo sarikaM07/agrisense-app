@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../auth/AuthContext';
+import './LoginForm.css';
 
 export default function LoginForm(){
   const [email,setEmail] = useState('');
