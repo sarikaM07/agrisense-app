@@ -1,4 +1,4 @@
-/* 🌿 LOGIN PAGE CONTAINER */
+
 .container {
   font-family: "Poppins", sans-serif;
   display: flex;
@@ -16,7 +16,7 @@
   box-sizing: border-box;
 }
 
-/* 🌸 LOGIN FORM */
+
 .form {
   background: rgba(255, 255, 255, 0.1);
   padding: 40px 45px;
@@ -30,7 +30,7 @@
   text-align: center;
 }
 
-/* 🧩 FORM HEADING */
+
 .form h2 {
   font-size: 28px;
   margin-bottom: 25px;
@@ -38,7 +38,7 @@
   letter-spacing: 1px;
 }
 
-/* ✉️ LABELS */
+
 .form label {
   text-align: left;
   font-weight: 500;
@@ -47,7 +47,7 @@
   color: #e0ffe0;
 }
 
-/* 🔤 INPUT FIELDS */
+
 .form input {
   width: 100%;
   padding: 12px 14px;
@@ -71,7 +71,7 @@
   box-shadow: 0 0 8px rgba(138, 255, 184, 0.6);
 }
 
-/* 🔘 SUBMIT BUTTON */
+
 .form button {
   margin-top: 25px;
   padding: 12px;
@@ -91,7 +91,6 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
-/* 📜 FOOTNOTE */
 .form p {
   font-size: 13px;
   color: #d8ffd8;
@@ -99,7 +98,7 @@
   opacity: 0.9;
 }
 
-/* 📱 RESPONSIVE DESIGN */
+
 @media (max-width: 480px) {
   .form {
     padding: 30px 25px;

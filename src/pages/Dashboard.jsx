@@ -3,7 +3,6 @@ import { Line } from 'react-chartjs-2';
 import StatsCard from '../components/StatsCard';
 import './Dashboard.css';
 
-// ✅ Import and register chart.js modules
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -43,7 +42,7 @@ export default function Dashboard() {
     <div className="dashboard-container">
       <h2 className="dashboard-title">Dashboard</h2>
 
-      {/* 🌾 Stats Grid */}
+     
       <div className="dashboard-stats">
         <div className="dashboard-card">
           <h3>Total Yield</h3>
@@ -70,13 +69,13 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* 📈 Chart Section */}
+     
       <div className="dashboard-card chart-card">
         <h3>Yield Trend</h3>
         <Line data={data} options={options} />
       </div>
 
-      {/* 🧾 Recent Events */}
+      
       <div className="dashboard-card">
         <h3>Recent Events</h3>
         <ul>

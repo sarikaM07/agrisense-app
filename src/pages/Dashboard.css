@@ -1,4 +1,4 @@
-/* 🌿 DASHBOARD CONTAINER */
+
 .dashboard-container {
   font-family: "Poppins", sans-serif;
   color: #ffffff;
@@ -15,7 +15,7 @@
   box-sizing: border-box;
 }
 
-/* 🌟 DASHBOARD TITLE */
+
 .dashboard-title {
   text-align: center;
   font-size: 38px;
@@ -26,7 +26,6 @@
   letter-spacing: 1px;
 }
 
-/* 📊 STATS GRID */
 .dashboard-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -34,7 +33,7 @@
   margin-bottom: 50px;
 }
 
-/* 🪴 DASHBOARD CARD */
+
 .dashboard-card {
   background: rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -52,13 +51,13 @@
   background: rgba(255, 255, 255, 0.35);
 }
 
-/* 📈 CHART CARD */
+
 .chart-card {
   text-align: center;
   padding: 40px 30px;
 }
 
-/* 🧾 CARD TITLES */
+
 .dashboard-card h3 {
   color: #0e3d25;
   font-size: 22px;
@@ -89,7 +88,7 @@
   transform: scale(1.03);
 }
 
-/* 🌾 DECORATIVE OVERLAY EFFECT */
+
 .dashboard-container::before {
   content: "";
   position: fixed;
@@ -102,7 +101,7 @@
   z-index: 0;
 }
 
-/* 💻 RESPONSIVE DESIGN */
+
 @media (max-width: 992px) {
   .dashboard-title {
     font-size: 32px;

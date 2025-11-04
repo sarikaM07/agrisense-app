@@ -1,6 +1,3 @@
-/* src/pages/Home.css */
-
-/* Variables (for consistent theming) */
 :root {
   --dark-green: #38761d;
   --light-green-accent: #a9e083;
@@ -8,13 +5,12 @@
   --card-bg-light: rgba(255, 255, 255, 0.2);
   --card-border-light: rgba(255, 255, 255, 0.3);
 
-  /* 💥 MODIFIED/ADDED: Transparent Green for Key Features/Stories BG */
   --transparent-light-green: rgba(169, 224, 131, 0.2);
   --card-border-dark: rgba(255, 255, 255, 0.15);
   --card-bg-dark: rgba(0, 0, 0, 0.2);
 }
 
-/* --- Base Body and Container Styling --- */
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -29,12 +25,11 @@ body {
   color: var(--text-color-light);
   padding-bottom: 50px;
   position: relative;
-  /* Dark Overlay for readability */
+
   background-blend-mode: darken;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* --- Hero Section & Content Styling --- */
 .hero-section {
   padding: 100px 8% 50px;
   text-align: left;
@@ -89,7 +84,6 @@ body {
   gap: 10px;
 }
 
-/* --- Why Choose AgriSense Section (Glassmorphism Cards) --- */
 .why-choose-section {
   text-align: center;
   padding: 80px 8%;
@@ -139,11 +133,7 @@ body {
   color: #e0e0e0;
 }
 
-/* --- Marquee/Scrolling Text Section (REMOVED) --- */
-/* The Marquee styles have been entirely removed to clean up the CSS and remove the feature. */
 
-
-/* --- Fade-in-up Animation Keyframes --- */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -198,8 +188,31 @@ body {
   animation-delay: 1.8s;
 }
 
+.delay-10 {
+  animation-delay: 2.0s;
+}
 
-/* --- ADDITIONAL CONTENT SECTION (No Change) --- */
+.delay-11 {
+  animation-delay: 2.2s;
+}
+
+.delay-12 {
+  animation-delay: 2.4s;
+}
+
+.delay-13 {
+  animation-delay: 2.6s;
+}
+
+.delay-14 {
+  animation-delay: 2.8s;
+}
+
+.delay-15 {
+  animation-delay: 3.0s;
+}
+
+
 .additional-content-section {
   padding: 80px 8%;
   max-width: 1000px;
@@ -207,9 +220,9 @@ body {
   text-align: center;
   color: var(--text-color-light);
 
-  /* Contrasting background */
+
   background-color: rgba(56, 118, 29, 0.9);
-  /* Dark Green with 90% opacity */
+
   border-radius: 15px;
   margin-top: 50px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
@@ -230,14 +243,13 @@ body {
   padding: 0 20px;
 }
 
-/* --- CTA Button (Explore Features) --- */
 .cta-button-wrapper {
   margin-top: 30px;
 }
 
 .main-cta-button {
   background-color: var(--light-green-accent);
-  /* Light Green */
+
   color: var(--dark-green);
   padding: 15px 35px;
   border: none;
@@ -256,9 +268,9 @@ body {
 }
 
 
-/* --- NEW: Key Features Section Styling (LIGHT & TRANSPARENT) --- */
+
 .key-features-container {
-  /* Transparent background */
+
   background-color: var(--transparent-light-green);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -283,7 +295,7 @@ body {
 }
 
 .feature-card {
-  /* Transparent Card Background (Glass effect) */
+
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -304,7 +316,7 @@ body {
   transform: translateY(-8px);
   border-color: var(--light-green-accent);
   background-color: rgba(255, 255, 255, 0.15);
-  /* Hover par thoda zyada white */
+
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -327,32 +339,122 @@ body {
   line-height: 1.5;
 }
 
-/* --- Stories Section Styling (Background Fixed) --- */
-.stories-section {
-  /* Background Key Features ke transparent BG ke saath merged hai */
-  background-color: var(--transparent-light-green);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
 
-  padding: 60px 8%;
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+/* ---------------------------------
+  --- UPDATED STORIES SECTION STYLING (TESTIMONIAL) ---
+  --------------------------------- */
+
+.stories-section {
+  padding: 80px 8%;
+  /* इमेज का गहरा हरा बैकग्राउंड color: #0E3012 */
+  background-color: #0e3012;
+  color: white;
+  text-align: left;
+
+  /* पुराने स्टाइल्स को ओवरराइट करने के लिए */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-top: none;
 }
 
 .stories-title {
-  font-size: 2.5em;
+  font-family: 'Georgia', serif;
+  /* फोंट स्टाइल जो इमेज से मेल खाए */
+  font-size: 3em;
+  font-weight: 500;
+  margin-bottom: 50px;
   color: white;
-  margin-bottom: 40px;
+  text-align: center;
+  /* टाइटल बीच में रहेगा */
+  max-width: 1200px;
+  margin: 0 auto 50px auto;
 }
 
-.rating-placeholder {
-  font-size: 2em;
-  color: gold;
+/* --- Testimonial Card Container --- */
+.testimonial-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #0e3012;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* 📝 Left Side: Text Content */
+.testimonial-content {
+  flex: 1;
+  padding: 60px 40px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rating-box {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 15px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.star-rating {
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin-right: 8px;
+}
+
+.rating-number {
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+}
+
+.testimonial-text {
+  font-size: 1.25em;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.testimonial-author {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: white;
+  line-height: 1.3;
+  font-family: 'Georgia', serif;
+}
+
+.author-location {
+  font-size: 0.85em;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  display: block;
+  margin-top: 5px;
+}
+
+/* 🪴 Right Side: Image Placeholder */
+.testimonial-image-placeholder {
+  flex: 1;
+  min-height: 500px;
+
+    
+  background-image: url('../assets/snake-plant-image.jpg');
+
+  background-size: 150%;
+  background-position: 70% bottom;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
 
-/* --- RESPONSIVENESS ADJUSTMENTS --- */
 
+/* --- Media Queries for Responsiveness --- */
 @media (max-width: 992px) {
   .key-features-container {
     padding: 60px 5%;
@@ -364,7 +466,34 @@ body {
 
   .feature-card {
     width: 45%;
-    /* Two cards per row on tablets */
+
+  }
+}
+
+@media (max-width: 900px) {
+  .testimonial-card-container {
+    flex-direction: column;
+  }
+
+  .testimonial-content {
+    max-width: 100%;
+    padding: 40px 5%;
+    text-align: center;
+  }
+
+  .rating-box {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .testimonial-author {
+    text-align: center;
+  }
+
+  .testimonial-image-placeholder {
+    min-height: 300px;
+    background-size: cover;
+    background-position: center;
   }
 }
 
@@ -382,7 +511,7 @@ body {
 @media (max-width: 600px) {
   .feature-card {
     width: 90%;
-    /* Single card per row on mobile */
+
     max-width: 350px;
   }
 

@@ -1,143 +1,371 @@
-/* 🌿 Global Theme Match */
-.disease-page {
-  font-family: "Poppins", sans-serif;
-  color: #033a22;
-  min-height: 100vh;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.25),
-      rgba(255, 255, 255, 0.25)
-    ),
-    url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=80");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  text-align: center;
-  padding-bottom: 40px;
+/* --- Global Styles & Layout Reset --- */
+.disease-page-container {
+    min-height: 100vh;
+    background-color: #f8fcf8;
+    font-family: Arial, sans-serif;
 }
 
-/* 🌾 Hero Section */
-.hero-section {
-  padding: 100px 20px 60px;
-  text-align: center;
+/* --- Main Layout: Sidebar + Content --- */
+.disease-content-layout {
+    display: flex;
+    padding: 20px 50px; 
+    gap: 30px; 
 }
 
-.hero-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #0b3d2e;
-  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.6);
+/* ------------------- ENHANCED SIDEBAR STYLES ------------------- */
+.sidebar {
+    width: 280px;
+    padding: 20px;
+    background-color: #ffffff;
+    height: fit-content;
+    position: sticky;
+    top: 20px; 
 }
 
-.hero-description {
-  color: #1c5e3e;
-  font-size: 1.1rem;
-  max-width: 600px;
-  margin: 10px auto 40px;
-  line-height: 1.5;
+.sidebar-label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
 }
 
-/* 🧬 Detection Card */
-.disease-card {
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 20px;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 40px 30px;
-  max-width: 500px;
-  margin: 0 auto 40px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.sidebar-input-group {
+    margin-bottom: 25px;
 }
 
-.disease-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(11, 61, 46, 0.3);
+.input-options-container {
+    display: flex;
+    flex-direction: column;
 }
 
-/* Instruction */
-.instruction {
-  color: #0b3d2e;
-  font-size: 16px;
-  margin-bottom: 20px;
+.option-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 15px;
 }
 
-/* 📸 Image Preview */
-.disease-card img {
-  margin-top: 15px;
-  border-radius: 12px;
-  width: 100%;
-  max-width: 320px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+.option-item input[type="checkbox"],
+.option-item input[type="radio"] {
+    display: none;
 }
 
-/* ⏳ Loading Spinner */
-.loading {
-  margin-top: 20px;
+.option-item label {
+    font-weight: normal;
+    color: #333; 
+    cursor: pointer;
+    margin-right: auto;
 }
 
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid #b8e0c2;
-  border-top: 4px solid #10442d;
-  border-radius: 50%;
-  margin: 0 auto 10px;
-  animation: spin 1s linear infinite;
+/* --- Custom Checkbox/Radio Styling --- */
+.dummy-box {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #999;
+    background-color: white;
+    border-radius: 3px;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    position: relative; /* ::after के लिए */
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+.sidebar-input-group:nth-child(2) .dummy-box {
+    border-radius: 50%;
 }
 
-/* 🌾 Result Section */
+
+.option-item input:checked + label + .dummy-box {
+
+    border-color: #38761d; 
+}
+
+.option-item input:checked + label + .dummy-box::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000; 
+}
+
+.sidebar-input-group:not(:nth-child(2)) .option-item input:checked + label + .dummy-box::after {
+    width: 8px;
+    height: 8px;
+}
+
+
+.sidebar-input-group:nth-child(2) .option-item input:checked + label + .dummy-box::after {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%; 
+}
+
+/* --- Symptoms Input --- */
+.symptoms-input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+.analyze-button {
+    width: 100px;
+    padding: 8px 15px;
+    background-color: #5c6bc0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.analyze-button:hover:not(:disabled) {
+    background-color: #4a59a3;
+}
+
+
+/* ------------------- ENHANCED MAIN CONTENT STYLES ------------------- */
+
+.main-content {
+    flex-grow: 1;
+}
+
+.detection-card-container {
+    border: 2px dashed #90c790;
+    border-radius: 10px;
+    padding: 30px;
+    background-color: white;
+    position: relative;
+    padding-bottom: 120px;
+}
+
+.detection-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.leaf-icon {
+    font-size: 30px;
+    color: #38761d;
+    margin-right: 10px;
+}
+
+.detection-title {
+    font-size: 32px;
+    color: #1a5e2f;
+    margin: 0;
+}
+
+.detection-tagline {
+    color: #555;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.uploader-area {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.upload-leaf-icon {
+    font-size: 70px;
+    color: #38761d;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.upload-instruction-main {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.image-uploader-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+
+.gallery-and-upload-section {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee; 
+    padding-top: 20px;
+}
+
+.gallery-link {
+    display: flex;
+    align-items: center;
+    color: #555;
+    font-size: 12px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.gallery-icon {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.main-upload-btn {
+    background-color: #38761d;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.main-upload-btn:hover {
+    background-color: #2c5a15;
+}
+
+
+/* ------------------- ImageUploader Component Styles ------------------- */
+.file-uploader-box {
+    border: 2px dashed #a8a8a8;
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    background-color: #fcfcfc;
+    transition: all 0.2s ease-in-out;
+}
+
+.file-uploader-box.dragging {
+    border-color: #38761d;
+    background-color: #e6ffe6;
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-icon {
+    font-size: 48px;
+    color: #38761d;
+    margin-bottom: 10px;
+}
+
+.drag-text {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+}
+
+.file-input-display {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.choose-file-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    flex-shrink: 0; 
+    transition: background-color 0.2s;
+}
+
+.choose-file-btn:hover {
+    background-color: #38761d;
+}
+
+.file-name-display {
+    padding: 10px;
+    background-color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333;
+    font-size: 14px;
+    flex-grow: 1; 
+    text-align: left;
+}
+
+
+/* ------------------- Result Section & Footer Styles ------------------- */
 .result-section {
-  margin-top: 25px;
+    margin-top: 30px;
+    padding: 20px;
+    border-top: 2px solid #38761d;
+    background-color: #f0fff0;
+    border-radius: 4px;
 }
 
 .result-section h3 {
-  color: #0b3d2e;
-  font-size: 1.3rem;
+    color: #1a5e2f;
+    margin-top: 0;
 }
 
-.result-section span {
-  color: #2e8b57;
-}
-
-.result-section p {
-  color: #0b3d2e;
-  font-size: 1rem;
+.result-section h3 span {
+    font-weight: bold;
+    color: #c90;
 }
 
 .result-image {
-  margin-top: 10px;
-  width: 100%;
-  max-width: 320px;
-  border-radius: 10px;
-  border: 2px solid #b8e0c2;
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-top: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* 🌿 Footer */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #38761d;
+    font-size: 18px;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #38761d;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .footer {
-  text-align: center;
-  padding: 15px 0;
-  color: #0b3d2e;
-}
-
-.footer-bottom p {
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-/* 📱 Responsive */
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 2rem;
-  }
-
-  .disease-card {
-    padding: 30px 20px;
-  }
+    padding: 20px 50px;
+    text-align: center;
+    border-top: 1px solid #eee;
+    background-color: #38761d;
+    margin-top: 40px;
 }

@@ -1,4 +1,4 @@
-/* src/components/Navbar.css */
+
 
 :root {
     --dark-green: #38761d;
@@ -7,16 +7,15 @@
 }
 
 .agrisense-navbar {
-    position: sticky; /* Sticky banane se scroll karne par upar fix ho jayega */
-    width: 100%;
+    position: sticky;
     top: 0;
     left: 0;
     z-index: 1000;
     
-    /* 💥 MODIFIED: Removed Glassmorphism. Added solid Dark Green BG */
+   
     background-color: var(--dark-green); 
-    /* Removed: backdrop-filter, -webkit-backdrop-filter, border-bottom */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Thoda bada shadow for lift */
+  
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); 
 }
 
 .navbar-container {
@@ -31,7 +30,7 @@
 .navbar-logo {
     font-size: 1.8em;
     font-weight: 700;
-    color: var(--light-green-accent); /* Logo color light green */
+    color: var(--light-green-accent); 
 }
 
 nav {
@@ -44,14 +43,14 @@ nav {
     color: white;
 }
 
-/* --- Navigation Links --- */
+
 .navbar-links {
     display: flex;
     gap: 30px;
 }
 
 .nav-link {
-    /* Navbar solid hai, isliye link color white hi rakhenge */
+   
     color: white; 
     text-decoration: none;
     font-size: 1em;
@@ -65,7 +64,7 @@ nav {
     border-bottom: 2px solid var(--light-green-accent);
 }
 
-/* --- Action Buttons --- */
+
 .navbar-actions {
     display: flex;
     gap: 10px;
@@ -82,7 +81,7 @@ nav {
 }
 
 .login-btn {
-    /* Login button ko white text/green border rakhenge */
+   
     background-color: transparent;
     color: var(--light-green-accent);
     border: 2px solid var(--light-green-accent);
@@ -94,7 +93,7 @@ nav {
 }
 
 .signup-btn {
-    /* Signup button highlight rahega */
+   
     background-color: var(--light-green-accent);
     color: var(--dark-green);
     box-shadow: 0 4px 10px rgba(169, 224, 131, 0.4);

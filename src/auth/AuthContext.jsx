@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  // Mock login function for demo
+  
   function loginMock({ email, password }) {
     if (email === "admin@demo") {
       setUser({ email, role: "admin" });

@@ -1,0 +1,268 @@
+/* --- General Page Structure --- */
+.forecasting-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 40px;
+    background-color: #f0f8f0; /* Light background for the page */
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- Layout Containers (Image 1) --- */
+.forecasting-form-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+}
+
+.dual-column-layout {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+
+.input-column {
+    flex: 1;
+}
+
+/* --- Image Upload Boxes (Image 1) --- */
+.image-upload-box {
+    border: 2px dashed #4caf50; /* Green dashed border */
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.2s;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-upload-box:hover {
+    background-color: #f8fff8;
+}
+
+.cloud-icon {
+    width: 40px;
+    height: 40px;
+    fill: #666;
+    margin-bottom: 10px;
+}
+
+.drag-drop-text {
+    color: #666;
+    font-size: 14px;
+}
+
+.browse-link {
+    color: #4caf50;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.upload-header {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* --- Data Inputs (Image 1 - Right Column) --- */
+.data-inputs-group {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.input-field {
+    margin-bottom: 15px;
+}
+
+.input-field label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.input-field input[type="text"], 
+.input-field select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+/* --- Bottom Controls (Image 1) --- */
+.bottom-controls {
+    margin-top: 20px;
+}
+
+.notes-input {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.submit-and-gallery {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gallery-upload {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.gallery-upload p {
+    font-size: 12px;
+    color: #666;
+}
+
+.gallery-icon {
+    width: 24px;
+    height: 24px;
+    fill: #333;
+}
+
+.upload-btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.enter-btn {
+    background-color: #4285F4; /* Blue */
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* --- Results Screen Styling (Image 2) --- */
+.results-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+}
+
+.results-title {
+    color: #4CAF50;
+    text-align: center;
+    font-size: 28px;
+    font-weight: normal;
+    margin-bottom: 30px;
+}
+
+.results-section {
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.results-instruction {
+    font-size: 14px;
+    color: #4CAF50;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.results-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.results-field label {
+    font-weight: normal;
+    color: #333;
+    margin-bottom: 3px;
+    font-size: 14px;
+}
+
+.results-field input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Specific styling for the Weather list */
+.weather-dropdown-group .weather-display {
+    padding: 10px;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+.weather-dropdown-group .weather-display p {
+    margin: 0;
+    padding: 2px 0;
+    font-size: 14px;
+    color: #333;
+}
+.weather-dropdown-group .weather-display span {
+    color: #4CAF50;
+    font-size: 18px;
+    line-height: 0;
+    margin-right: 5px;
+}
+
+.analysis-success-message {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.prediction-summary {
+    background-color: #e8f5e9; /* Light green background */
+    padding: 20px;
+    border-radius: 0 0 10px 10px; /* Rounded at the bottom */
+    margin: -30px -30px -30px -30px; /* Extend to cover the whole width */
+    margin-top: 20px;
+}
+
+.prediction-summary .summary-field {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.prediction-summary .summary-field span {
+    font-weight: bold;
+    color: #1b5e20; /* Darker green for values */
+}

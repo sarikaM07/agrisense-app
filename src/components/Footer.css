@@ -1,4 +1,4 @@
-/* src/components/Footer.css */
+
 
 :root {
     --dark-green: #38761d;
@@ -7,15 +7,14 @@
 }
 
 .agrisense-footer-minimal {
-    /* Same dark background as before */
+    
     background-color: var(--dark-green);
     color: var(--text-color-light);
     padding: 20px 8%;
     font-family: 'Poppins', sans-serif;
     text-align: center;
-    border-top: 3px solid var(--light-green-accent); /* Small accent line */
-    width: 100%;
-    box-sizing: border-box; /* Padding width mein count hoga */
+    border-top: 3px solid var(--light-green-accent);
+    box-sizing: border-box; 
 }
 
 .footer-container {
@@ -23,7 +22,6 @@
     margin: 0 auto;
 }
 
-/* --- Links --- */
 .footer-links-minimal {
     margin-bottom: 10px;
 }
@@ -45,23 +43,23 @@
     font-size: 0.9em;
 }
 
-/* --- Copyright --- */
+
 .footer-copyright {
     font-size: 0.8em;
     color: rgba(255, 255, 255, 0.6);
     margin: 0;
 }
 
-/* --- Responsiveness --- */
+
 @media (max-width: 600px) {
     .agrisense-footer-minimal {
         padding: 15px 4%;
     }
     .footer-links-minimal a {
-        display: block; /* Mobile par links ko stack kar denge */
+        display: block;
         padding: 5px 0;
     }
     .separator {
-        display: none; /* Mobile par separator hat jayenge */
+        display: none; 
     }
 }
