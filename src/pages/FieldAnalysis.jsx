@@ -1,236 +1,427 @@
-import React, { useState } from 'react';
-import "./Forecasting.css"; 
+import React, { useState } from "react";
+import "./FieldAnalysis.css";
 
-// --- Reusable Upload Box Component (Simplified for structure) ---
-const UploadBox = ({ id, onFileSelect, selectedFile, label }) => (
-    <div
-        className={`image-upload-box ${id}`}
-        onClick={() => document.getElementById(id).click()}
-    >
-        <input
-            type="file"
-            id={id}
-            onChange={onFileSelect}
-            style={{ display: 'none' }}
-            accept="image/*"
-        />
-
-        {selectedFile ? (
-            <p className="file-info">File ready: **{selectedFile.name}**</p>
-        ) : (
-            <>
-                {/* Cloud Icon Placeholder */}
-                <svg className="cloud-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M288 184.4V80c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v104.4c-47.5 10.6-88 38.6-114 74.9-3.7 5.1-5.6 11.2-5.6 17.5 0 16.5 13.5 30 30 30h336c16.5 0 30-13.5 30-30 0-6.3-2-12.4-5.6-17.5-26-36.3-66.5-64.3-114-74.9zm136 105.6h-336c-39.7 0-72 32.3-72 72s32.3 72 72 72h336c39.7 0 72-32.3 72-72s-32.3-72-72-72z"/></svg>
-                <p className="drag-drop-text">
-                    Drag & Drop **{label}**
-                    <br />
-                    or <span className="browse-link">browse</span>
-                </p>
-            </>
-        )}
-    </div>
-);
-
-// --- Main Component ---
-const YieldForecasting = () => {
-    const [selectedOriginalFile, setSelectedOriginalFile] = useState(null);
-    const [selectedMaskedFile, setSelectedMaskedFile] = useState(null);
-    const [pastYield, setPastYield] = useState('');
-    const [ndvi, setNdvi] = useState('');
-    const [weather, setWeather] = useState('Select');
-    const [notes, setNotes] = useState('');
-
-    // State to toggle between Input Form (false) and Results (true)
-    const [showResults, setShowResults] = useState(false);
-
-    // Simulated Output State
-    const [predictedYield, setPredictedYield] = useState('N/A');
-    const [uncertaintyRange, setUncertaintyRange] = useState('N/A');
-    const [confidencePercentage, setConfidencePercentage] = useState('N/A');
-    const [diseaseDetected, setDiseaseDetected] = useState('N/A');
-    const [typeOfCrop, setTypeOfCrop] = useState('N/A');
-    const [soilArea, setSoilArea] = useState('N/A');
-    const [weedArea, setWeedArea] = useState('N/A');
-    const [healthyArea, setHealthyArea] = useState('N/A');
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        
-        // Input Validation (Simplified)
-        if (!selectedOriginalFile || !selectedMaskedFile || !pastYield || !ndvi || weather === 'Select') {
-            alert("Please complete all required fields (Images, Past Yield, NDVI, and Weather).");
-            return;
-        }
-
-        // 1. Simulate the "Field Segmentation" analysis (from previous steps)
-        setSoilArea('35.2%');
-        setWeedArea('5.8%');
-        setHealthyArea('59.0%');
-        
-        // 2. Simulate the "Disease Detection" and "Yield Forecasting" results
-        setDiseaseDetected('Early Blight (12%)');
-        setTypeOfCrop('Tomato');
-        setPredictedYield('6.2 tons/hectare');
-        setUncertaintyRange('±0.4 tons/hectare');
-        setConfidencePercentage('91%');
-
-        // Toggle to the results screen
-        setShowResults(true);
+const App = () => {
+    const initialInputs = {
+        diseaseDetected: "",
+        cropType: "",
+        soilArea: "", // in hectares
+        weedArea: "", // in % of total area
+        healthyArea: "", // in % of total area
+        ndviReport: "", // NDVI value
+        pastYield: "", // Previous yield
+        weather: "Sunny", // Default selection
     };
 
-    // --- Input Form (Image 1) ---
-    const renderInputForm = () => (
-        <form className="forecasting-form-wrapper" onSubmit={handleSubmit}>
-            <div className="dual-column-layout">
-                {/* Left Column: Image Uploads */}
-                <div className="input-column image-upload-group">
-                    <UploadBox 
-                        id="file-upload-original"
-                        onFileSelect={(e) => setSelectedOriginalFile(e.target.files[0])}
-                        selectedFile={selectedOriginalFile}
-                        label="Original Plant Image"
-                    />
-                    <UploadBox 
-                        id="file-upload-masked"
-                        onFileSelect={(e) => setSelectedMaskedFile(e.target.files[0])}
-                        selectedFile={selectedMaskedFile}
-                        label="RGB (Masked) Image"
-                    />
-                </div>
+    const [inputs, setInputs] = useState(initialInputs);
+    const [output, setOutput] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(""); // Weather options
 
-                {/* Right Column: Text Inputs */}
-                <div className="input-column data-inputs-group">
-                    <div className="input-field">
-                        <label>Weather :</label>
-                        <select value={weather} onChange={(e) => setWeather(e.target.value)}>
-                            <option value="Select">Select</option>
-                            <option value="Dry">Dry</option>
-                            <option value="Humid">Humid</option>
-                            <option value="Rainy">Rainy</option>
-                        </select>
-                    </div>
+    const weatherOptions = ["Moderate", "Warm", "Cold"];
 
-                    <div className="input-field">
-                        <label>Past Yield :</label>
-                        <input
-                            type="text"
-                            placeholder="e.g., 45.7"
-                            value={pastYield}
-                            onChange={(e) => setPastYield(e.target.value)}
-                        />
-                    </div>
+    const handleChange = (e) => {
+        setInputs({ ...inputs, [e.target.name]: e.target.value });
+        if (output) setOutput(null);
+        if (error) setError("");
+    };
 
-                    <div className="input-field">
-                        <label>NDVI :</label>
-                        <input
-                            type="text"
-                            placeholder="Type here"
-                            value={ndvi}
-                            onChange={(e) => setNdvi(e.target.value)}
-                        />
-                    </div>
-                </div>
-            </div>
+    const validateInputs = () => {
+        const { soilArea, weedArea, healthyArea, ndviReport, pastYield } = inputs;
 
-            {/* Bottom Row: Notes and Submit Button */}
-            <div className="bottom-controls">
-                <textarea
-                    className="notes-input"
-                    placeholder="Enter additional plant data or notes..."
-                    value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
-                />
-                <div className="submit-and-gallery">
-                    <div className="gallery-upload">
-                         {/* Using simple text/icon placeholder for gallery upload */}
-                        <svg className="gallery-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 480H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64zM245.5 129.5c9.2-9.2 23.3-11.9 35.8-5.3l120 64c11.3 6 18.7 17.5 18.7 30.1V368c0 14.7-11.8 26.5-26.5 26.5H238.9c-11.7 0-21.7-8.3-24-20l-20.9-110.1c-1.3-6.6 1.4-13.4 7.2-16.8l20-11.4c6.6-3.8 14.8-1.5 18.6 5.1s1.5 14.8-5.1 18.6l-11.3 6.5-12.8 67.4 12.8 6.5z"/></svg>
-                        <p>IMAGES upload from gallery</p>
-                        <button type="button" className="upload-btn">Upload</button>
-                    </div>
-                    <button type="submit" className="enter-btn">Enter</button>
-                </div>
-            </div>
-        </form>
-    );
+        if (
+            isNaN(parseFloat(soilArea)) ||
+            isNaN(parseFloat(weedArea)) ||
+            isNaN(parseFloat(healthyArea)) ||
+            isNaN(parseFloat(ndviReport)) ||
+            isNaN(parseFloat(pastYield))
+        ) {
+            setError(
+                "Please enter valid numerical values for all area, report, and yield fields."
+            );
+            return false;
+        }
 
-    // --- Results Screen (Image 2) ---
-    const renderResultsScreen = () => (
-        <div className="results-container">
-            <h1 className="results-title">Yield Forecasting</h1>
+        const weedPercent = parseFloat(weedArea);
+        const healthyPercent = parseFloat(healthyArea);
+        if (weedPercent + healthyPercent > 100) {
+            setError(
+                "The total of Weed Area (%) and Healthy Area (%) cannot exceed 100%."
+            );
+            return false;
+        }
 
-            {/* Section 1: Disease & Crop */}
-            <div className="results-section">
-                <p className="results-instruction">Kindly carry out the disease detection process for the inputs provided below.</p>
-                <div className="results-field">
-                    <label>Disease detected :</label>
-                    <input type="text" readOnly value={diseaseDetected} />
-                </div>
-                <div className="results-field">
-                    <label>Type of crop :</label>
-                    <input type="text" readOnly value={typeOfCrop} />
-                </div>
-            </div>
+        setError("");
+        return true;
+    };
 
-            {/* Section 2: Area Segmentation */}
-            <div className="results-section">
-                <p className="results-instruction">Kindly carry out the yield forecasting process for the inputs provided below.</p>
-                <div className="results-field">
-                    <label>Soil Area :</label>
-                    <input type="text" readOnly value={soilArea} />
-                </div>
-                <div className="results-field">
-                    <label>Weed Area :</label>
-                    <input type="text" readOnly value={weedArea} />
-                </div>
-                <div className="results-field">
-                    <label>Healthy Area :</label>
-                    <input type="text" readOnly value={healthyArea} />
-                </div>
-            </div>
+    const handleForecast = (e) => {
+        e.preventDefault();
+        if (!validateInputs()) return;
 
-            {/* Section 3: Input Data Review */}
-            <div className="results-section">
-                <div className="results-field">
-                    <label>NDVI Report :</label>
-                    <input type="text" readOnly value={ndvi || 'N/A'} />
-                </div>
-                <div className="results-field">
-                    <label>Past Yield :</label>
-                    <input type="text" readOnly value={pastYield || 'N/A'} />
-                </div>
-                <div className="results-field weather-dropdown-group">
-                    <label>Weather :</label>
-                    <div className="weather-display">
-                        <p><span>•</span> {weather}</p>
-                        <p><span>•</span> Humid</p>
-                        <p><span>•</span> Rainy</p>
-                    </div>
-                </div>
-            </div>
-            
-            <p className="analysis-success-message">The data analysis has been conducted successfully, and the findings are presented below.</p>
+        setIsLoading(true);
 
-            {/* Final Yield Prediction */}
-            <div className="prediction-summary">
-                <p className="summary-field">Predicted Yield : <span>{predictedYield}</span></p>
-                <p className="summary-field">Uncertainty Range : <span>{uncertaintyRange}</span></p>
-                <p className="summary-field">Confidence Percentage : <span>{confidencePercentage}</span></p>
-            </div>
-        </div>
-    );
+        setTimeout(() => {
+            const soil = parseFloat(inputs.soilArea) || 1;
+            const healthy = parseFloat(inputs.healthyArea) || 0;
+            const weed = parseFloat(inputs.weedArea) || 0;
+            const ndvi = parseFloat(inputs.ndviReport) || 0.5;
+            const past = parseFloat(inputs.pastYield) || 5;
+
+            let predictedYield = past * (1 + (healthy / 100) * 0.2 + ndvi * 0.1);
+
+            if (inputs.diseaseDetected.toLowerCase().includes("rust") || weed > 20) {
+                predictedYield *= 0.85;
+            } else if (weed > 50) {
+                predictedYield *= 0.7;
+            }
+
+            predictedYield = (predictedYield / soil).toFixed(2);
+
+            let confidence =
+                95 - weed / 2 - (inputs.diseaseDetected.length > 0 ? 5 : 0);
+            confidence = Math.max(80, Math.min(99, confidence)).toFixed(0);
+
+            let uncertainty = (100 - confidence) / 20;
+
+            setOutput({
+                predictedYield: predictedYield + " tons/hectare",
+                uncertaintyRange: `±${uncertainty.toFixed(2)} tons/hectare`,
+                confidencePercentage: `${confidence}%`,
+            });
+
+            setIsLoading(false);
+        }, 1500);
+    };
 
     return (
-        <div className="forecasting-page-wrapper">
-            {showResults ? renderResultsScreen() : renderInputForm()}
-            
-            {/* Background elements */}
-            <div className="background-design">
-                <div className="curve-light"></div>
-                <div className="curve-dark"></div>
+        <div className="app-container">
+            {" "}
+            <div className="main-content">
+                {" "}
+                <h1 className="main-header">
+                    <span className="highlight-text">Yield</span>{" "}
+                    Forecast                {" "}
+                </h1>
+                {" "}
+                {error && (
+                    <div className="error-message" role="alert">
+                        {error}                   {" "}
+                    </div>
+                )}
+                {" "}
+                <form onSubmit={handleForecast}>
+                    {" "}
+                    <div className="card">
+                        {" "}
+                        <h2 className="section-header">
+                            Please analyze the disease and crop
+                            for the inputs below.                        {" "}
+                        </h2>
+                        {" "}
+                        <div className="form-grid">
+                            {" "}
+                            <div className="form-group">
+                                {" "}
+                                <label htmlFor="diseaseDetected" className="form-label">
+                                    Disease Detected:
+                                    {" "}
+                                </label>
+                                {" "}
+                                <input
+                                    type="text"
+                                    id="diseaseDetected"
+                                    name="diseaseDetected"
+                                    value={inputs.diseaseDetected}
+                                    onChange={handleChange}
+                                    placeholder="Type your answer (e.g., Rust, None)"
+                                    className="form-input"
+                                    required
+                                />
+                                {" "}
+                            </div>
+                            {" "}
+                            <div className="form-group">
+                                {" "}
+                                <label htmlFor="cropType" className="form-label">
+                                    Type of Crop:
+                                    {" "}
+                                </label>
+                                {" "}
+                                <input
+                                    type="text"
+                                    id="cropType"
+                                    name="cropType"
+                                    value={inputs.cropType}
+                                    onChange={handleChange}
+                                    placeholder="Type your answer (e.g., Wheat, Rice)"
+                                    className="form-input"
+                                    required
+                                />
+                                {" "}
+                            </div>
+                            {" "}
+                        </div>
+                        {" "}
+                    </div>
+                    {" "}
+                    <div className="card">
+                        {" "}
+                        <h2 className="section-header">
+                            Please complete the yield forecasting
+                            process for the inputs below.                        {" "}
+                        </h2>
+                        {" "}
+                        <div className="form-grid">
+                            {/* Area Inputs */}
+                            {" "}
+                            <div className="space-y-4">
+                                {" "}
+                                <div className="form-group">
+                                    {" "}
+                                    <label htmlFor="soilArea" className="form-label">
+                                        Soil Area
+                                        (Hectares):                                    {" "}
+                                    </label>
+                                    {" "}
+                                    <input
+                                        type="number"
+                                        step="0.1"
+                                        id="soilArea"
+                                        name="soilArea"
+                                        value={inputs.soilArea}
+                                        onChange={handleChange}
+                                        placeholder="Type your answer (e.g., 10)"
+                                        className="form-input"
+                                        required
+                                    />
+                                    {" "}
+                                </div>
+                                {" "}
+                                <div className="form-group">
+                                    {" "}
+                                    <label htmlFor="weedArea" className="form-label">
+                                        Weed Area (%):
+                                        {" "}
+                                    </label>
+                                    {" "}
+                                    <input
+                                        type="number"
+                                        step="1"
+                                        id="weedArea"
+                                        name="weedArea"
+                                        value={inputs.weedArea}
+                                        onChange={handleChange}
+                                        placeholder="Type your answer (e.g., 5)"
+                                        className="form-input"
+                                        required
+                                    />
+                                    {" "}
+                                </div>
+                                {" "}
+                                <div className="form-group">
+                                    {" "}
+                                    <label htmlFor="healthyArea" className="form-label">
+                                        Healthy Area (%):
+                                        {" "}
+                                    </label>
+                                    {" "}
+                                    <input
+                                        type="number"
+                                        step="1"
+                                        id="healthyArea"
+                                        name="healthyArea"
+                                        value={inputs.healthyArea}
+                                        onChange={handleChange}
+                                        placeholder="Type your answer (e.g., 90)"
+                                        className="form-input"
+                                        required
+                                    />
+                                    {" "}
+                                </div>
+                                {" "}
+                            </div>
+                            {" "}
+                            <div className="space-y-4">
+                                {" "}
+                                <div className="form-group">
+                                    {" "}
+                                    <label htmlFor="ndviReport" className="form-label">
+                                        NDVI Report (0.0 to
+                                        1.0):                                    {" "}
+                                    </label>
+                                    {" "}
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        id="ndviReport"
+                                        name="ndviReport"
+                                        value={inputs.ndviReport}
+                                        onChange={handleChange}
+                                        placeholder="Type your answer (e.g., 0.75)"
+                                        className="form-input"
+                                        required
+                                    />
+                                    {" "}
+                                </div>
+                                {" "}
+                                <div className="form-group">
+                                    {" "}
+                                    <label htmlFor="pastYield" className="form-label">
+                                        Previous Yield
+                                        (Tons/Hectare):                                    {" "}
+                                    </label>
+                                    {" "}
+                                    <input
+                                        type="number"
+                                        step="0.1"
+                                        id="pastYield"
+                                        name="pastYield"
+                                        value={inputs.pastYield}
+                                        onChange={handleChange}
+                                        placeholder="Type your answer (e.g., 6.5)"
+                                        className="form-input"
+                                        required
+                                    />
+                                    {" "}
+                                </div>
+                                {" "}
+                                <div className="form-group">
+                                    {" "}
+                                    <label htmlFor="weather" className="form-label">
+                                        Weather
+                                        (Current/Forecasted):                                    {" "}
+                                    </label>
+                                    {" "}
+                                    <select
+                                        id="weather"
+                                        name="weather"
+                                        value={inputs.weather}
+                                        onChange={handleChange}
+                                        className="form-input form-select"
+                                        required
+                                    >
+                                        {" "}
+                                        {weatherOptions.map((option) => (
+                                            <option key={option} value={option}>
+                                                {option}
+                                            </option>
+                                        ))}
+                                        {" "}
+                                    </select>
+                                    {" "}
+                                </div>
+                                {" "}
+                            </div>
+                            {" "}
+                        </div>
+                        {" "}
+                    </div>
+                    {" "}
+                    <div className="button-wrapper">
+                        {" "}
+                        <button
+                            type="submit"
+                            disabled={isLoading}
+                            className={
+                                isLoading
+                                    ? "submit-button submit-button-loading"
+                                    : "submit-button"
+                            }
+                        >
+                            {" "}
+                            {isLoading ? (
+                                <>
+                                    {" "}
+                                    <svg
+                                        className="spinner"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        {" "}
+                                        <circle
+                                            className="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            strokeWidth="4"
+                                        ></circle>
+                                        {" "}
+                                        <path
+                                            className="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                        ></path>
+                                        {" "}
+                                    </svg>
+                                    Forecasting...
+                                    {" "}
+                                </>
+                            ) : (
+                                "Calculate Yield Forecast"
+                            )}
+                            {" "}
+                        </button>
+                        {" "}
+                    </div>
+                    {" "}
+                </form>
+                {" "}
+                {output && (
+                    <div className="card result-card">
+                        {" "}
+                        <p className="result-text-muted">
+                            The data analysis has been
+                            successfully conducted, and the conclusions are presented below.
+                            {" "}
+                        </p>
+                        {" "}
+                        <div className="space-y-4">
+                            {" "}
+                            <div className="result-row">
+                                {" "}
+                                <span className="result-text">Predicted Yield:</span>
+                                {" "}
+                                <span className="result-value-main">
+                                    {output.predictedYield}
+                                    {" "}
+                                </span>
+                                {" "}
+                            </div>
+                            {" "}
+                            <div className="result-row">
+                                {" "}
+                                <span className="result-text">Uncertainty Range:</span>
+                                {" "}
+                                <span className="result-value-secondary">
+                                    {output.uncertaintyRange}
+                                    {" "}
+                                </span>
+                                {" "}
+                            </div>
+                            {" "}
+                            <div className="result-row">
+                                {" "}
+                                <span className="result-text">Confidence Percentage:</span>
+                                {" "}
+                                <span className="result-value-confidence">
+                                    {" "}
+                                    {output.confidencePercentage}
+                                </span>
+                                {" "}
+                            </div>
+                            {" "}
+                        </div>
+                        {" "}
+                    </div>
+                )}
+                {" "}
             </div>
+            {" "}
         </div>
     );
 };
 
-export default YieldForecasting;
+export default App;

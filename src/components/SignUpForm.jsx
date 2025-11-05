@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom'; // Router ki dependency hataayi gayi
+// Removed: import { useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
     // State to manage form data
@@ -9,10 +9,58 @@ const SignUpForm = () => {
         password: '', 
         confirmPassword: '', 
     });
+    // State to manage the user message (success/error)
+    const [message, setMessage] = useState('');
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    
+    // Hook for navigation (Removed useNavigate hook)
+    // const navigate = useNavigate();
 
     // Handle input changes
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    // Function to handle the registration API call
+    const handleRegistration = async () => {
+        setIsLoading(true);
+        setMessage(''); // Clear previous messages
+
+        try {
+            const response = await fetch('https://agrisense-gno8.onrender.com/api/v1/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            
+            const data = await response.json();
+            console.log("API Response:", data); 
+
+            if (data.success) {
+                // Set success message state
+                setMessage("✅ Registration successful! Redirecting to login...");
+                setIsSuccess(true);
+                
+                // Navigate after a delay so user can see the message
+                setTimeout(() => {
+                    // Replaced navigate("/login") with window.location.href
+                    window.location.href = '/login';
+                }, 2500);
+            } else {
+                // Handle API-level errors (e.g., duplicate email)
+                setMessage(`❌ Registration failed: ${data.message || 'Server Error'}`);
+                setIsSuccess(false);
+                setIsLoading(false);
+            }
+        } catch (error) {
+            console.error('Network Error:', error);
+            setMessage('❌ Network error. Please check your connection.');
+            setIsSuccess(false);
+            setIsLoading(false);
+        }
     };
 
     // Handle form submission
@@ -21,29 +69,24 @@ const SignUpForm = () => {
         
         // Simple client-side validation
         if (formData.password !== formData.confirmPassword) {
-            // Error handling (using console for now)
-            console.error("Passwords do not match!");
+            setMessage("❌ Passwords do not match!");
+            setIsSuccess(false);
             return;
         }
 
-        console.log('Sign Up Data Submitted:', formData);
-        // Integrate with Firebase or backend API here
+        handleRegistration();
     };
 
+    // Inline CSS content
     const styleContent = `
-        
-
         /* --- 1. Container and Background --- */
-
         .auth-page-container {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            width: 100%;           
-            background: url('/images/signup-bg.jpg'), url('https://images.unsplash.com/photo-1542838792-ae7011d8d3f7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-repeat: no-repeat;
-            background-position: center;
+            width: 100%;           
+            background: url('https://images.unsplash.com/photo-1542838792-ae7011d8d3f7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
             background-size: cover;
             font-family: 'Inter', sans-serif;
             padding: 20px;
@@ -51,7 +94,6 @@ const SignUpForm = () => {
             position: relative; 
             z-index: 1;
         }
-
 
         .auth-page-container::before {
             content: '';
@@ -67,9 +109,7 @@ const SignUpForm = () => {
             z-index: -1; 
         }
 
-
         /* --- 2. The Glass Card --- */
-
         .auth-card { 
             /* Deep Glassmorphism Effect */
             background: rgba(255, 255, 255, 0.1); 
@@ -92,22 +132,19 @@ const SignUpForm = () => {
             font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 35px;
-            color: #126b31ff; /* Light green title */
+            color: #D4E157; /* Light green title */
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
         }
 
-        /* --- 3. Form Layout and Elements (Single Column Layout) --- */
-
+        /* --- 3. Form Layout and Elements --- */
         .auth-form {
-            /* Single column layout is set here */
             display: grid;
             grid-template-columns: 1fr; 
-            gap: 20px; /* Vertical spacing between fields */
+            gap: 20px; 
             text-align: left;
         }
 
         .form-group {
-            /* Ensures each field spans the full container width */
             grid-column: 1 / span 1; 
             margin-bottom: 0; 
         }
@@ -117,7 +154,8 @@ const SignUpForm = () => {
             font-size: 0.95rem;
             margin-bottom: 6px;
             display: block;
-            color:#000000; 
+            color: #fff; /* Changed label color for better contrast on glass */
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         }
 
         .auth-form input {
@@ -126,24 +164,23 @@ const SignUpForm = () => {
             border: 1px solid rgba(255, 255, 255, 0.5); 
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.1); 
-            color: #000000; 
+            color: #fff; /* Input text white */
             font-size: 1rem;
             transition: all 0.3s ease;
             box-sizing: border-box;
         }
 
         .auth-form input::placeholder {
-            color: #000000; 
+            color: rgba(255, 255, 255, 0.7); 
         }
 
         .auth-form input:focus {
             outline: none;
-            border-color: #D4E157; /* Accent color on focus */
+            border-color: #D4E157; 
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* --- 4. Submit Button --- */
-
+        /* --- 4. Submit Button & Loading --- */
         .submit-button {
             grid-column: 1 / span 1; 
             padding: 15px; 
@@ -159,20 +196,44 @@ const SignUpForm = () => {
             color: #1b5e20; 
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        .submit-button:hover {
+        .submit-button:hover:not(:disabled) {
             background: linear-gradient(to right, #7cb342, #ffecb3);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
             transform: translateY(-2px);
         }
 
-        .submit-button:active {
+        .submit-button:active:not(:disabled) {
             transform: translateY(0);
         }
+        
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #1b5e20;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
 
         /* --- 5. Footer Text --- */
-
         .auth-footer-text {
             grid-column: 1 / span 1; 
             margin-top: 15px; 
@@ -192,7 +253,33 @@ const SignUpForm = () => {
             text-decoration: underline;
         }
 
-        /* --- 6. Responsiveness for smaller screens --- */
+        /* --- 6. Message Modal --- */
+        .message-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: opacity 0.3s ease-in-out;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .message-modal.success {
+            background-color: #d4e157; /* Light Green */
+            color: #1b5e20; /* Dark Green Text */
+        }
+
+        .message-modal.error {
+            background-color: #ffcdd2; /* Light Red */
+            color: #b71c1c; /* Dark Red Text */
+        }
+
+        /* --- 7. Responsiveness --- */
         @media (max-width: 650px) { 
             .auth-card {
                 max-width: 90%; 
@@ -209,8 +296,14 @@ const SignUpForm = () => {
 
     return (
         <div className="auth-page-container"> 
-            {/* CSS styles ko inject karne ka yeh zaroori tareeka hai */}
             <style dangerouslySetInnerHTML={{ __html: styleContent }} />
+            
+            {/* Conditional Message Modal */}
+            {message && (
+                <div className={`message-modal ${isSuccess ? 'success' : 'error'}`}>
+                    {message}
+                </div>
+            )}
             
             <div className="auth-card"> 
                 <h2 className="auth-title">Create Account</h2>
@@ -269,16 +362,21 @@ const SignUpForm = () => {
                         />
                     </div>
                     
-                    <button type="submit" className="submit-button">
-                        Sign Up
+                    <button type="submit" className="submit-button" disabled={isLoading || isSuccess}>
+                        {isLoading ? (
+                            <>
+                                <div className="spinner"></div>
+                                Registering...
+                            </>
+                        ) : (
+                            'Sign Up'
+                        )}
                     </button>
                 </form>
 
                 <p className="auth-footer-text">
-                    {/* Link component ko sadharan anchor tag (<a>) se badal diya gaya */}
-                    Already have an account? <a href="#" className="footer-link">Log In</a>
+                    Already have an account? <a href="/login" className="footer-link">Log In</a>
                 </p>
-                
             </div>
         </div>
     );

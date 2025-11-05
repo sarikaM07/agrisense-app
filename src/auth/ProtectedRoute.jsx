@@ -1,19 +1,17 @@
-// import React, { useContext } from "react";
-import React from "react";
-import { useContext } from "react"; 
+import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 
 export default function ProtectedRoute({ children }) {
-  const { user } = useContext(AuthContext);
+  const { user, isLoading } = useContext(AuthContext); 
 
-  // If not logged in, redirect to login page
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
+  if (isLoading) {
+    return <div className="loading-screen">Authenticating user session...</div>; 
+  }
 
-  // Otherwise, show the protected page
-  return children;
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
 }
-
-
