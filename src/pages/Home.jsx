@@ -17,15 +17,15 @@ const Home = () => {
     navigate("/disease");
   };
 
-  // MODIFIED HANDLER TO NAVIGATE TO THE FieldAnalysis ROUTE (/analysis)
+  
   const handleYieldForecastingClick = () => {
 
-    navigate("/analysis"); // Navigate to the route where FieldAnalysis.jsx is rendered
+    navigate("/analysis"); 
   };
 
-  // The original handleForecastingClick (navigating to /forecast) is kept for the Field Segmentation card.
+  
   const handleSegmentationClick = () => {
-    navigate("/forecast"); // Keeping original link for Field Segmentation
+    navigate("/forecast"); 
   };
 
 
@@ -118,7 +118,7 @@ const Home = () => {
             </p>
           </div>
 
-          {/* Field Segmentation Card (Kept linked to /forecast) */}
+          
           <div
             className="feature-card animate-fade-in-up delay-12"
             onClick={handleSegmentationClick}
@@ -135,10 +135,10 @@ const Home = () => {
             </p>
           </div>
 
-          {/* Yield Forecasting Card (NOW links to /analysis for FieldAnalysis.jsx) */}
+          
           <div
             className="feature-card animate-fade-in-up delay-13"
-            onClick={handleYieldForecastingClick} // <--- UPDATED CLICK HANDLER
+            onClick={handleYieldForecastingClick} 
             role="button"
             tabIndex="0"
           >
@@ -159,11 +159,11 @@ const Home = () => {
           Stories Rooted in Change
         </h2>
 
-        {/* Testimonial Card Container */}
+       
         <div className="testimonial-card-container animate-fade-in-up delay-15">
-          {/* Left Side: Text Content */}
+       
           <div className="testimonial-content">
-            {/* Rating Box */}
+          
             <div className="rating-box">
               <span className="star-rating">⭐⭐⭐⭐</span>
               <span className="rating-number">4.2</span>
@@ -182,9 +182,8 @@ const Home = () => {
             </p>
           </div>
 
-          {/* Right Side: Image Placeholder */}
           <div className="testimonial-image-placeholder">
-            {/* CSS will handle the image and background color here */}
+            
           </div>
         </div>
       </section>
