@@ -1,192 +1,156 @@
 import React from "react";
-
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
 import backgroundImage from "../assets/farm-field-bg.jpg";
-
 import snakePlantImage from "../assets/snake-plant-image.jpg";
 
 const Home = () => {
-
   const navigate = useNavigate();
 
-
-  const handleDiseaseDetectionClick = () => {
-
-    navigate("/disease");
-  };
-
-  
-  const handleYieldForecastingClick = () => {
-
-    navigate("/analysis"); 
-  };
-
-  
-  const handleSegmentationClick = () => {
-    navigate("/forecast"); 
-  };
-
-
   return (
+    <div className="home-container">
 
-    <div
-      className="home-container"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
-
-      <section className="hero-section">
-        <h1 className="hero-title animate-fade-in-up">
-          Smart Farming. <br /> Smarter Insights.
-        </h1>
-        <p className="hero-subtitle animate-fade-in-up delay-1">
-          Monitor crop health, detect diseases, and forecast yield — all in one
-          intelligent dashboard.
-        </p>
-        <div className="hero-description animate-fade-in-up delay-2">
-          <p>
-            AgriSense brings together the power of **AI, data visualization, and
-            modern design** to help farmers make informed decisions with
-            confidence. From detecting early signs of disease to forecasting
-            yield and optimizing field management, every feature is built to make
-            agriculture smarter, simpler, and more sustainable.
+      {/* ===== HERO SECTION ===== */}
+      <section className="hero-section" style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div className="hero-content">
+          <h1 className="hero-title animate-fade-in-up">
+            Smart Farming.<br />Smarter Insights.
+          </h1>
+          <p className="hero-subtitle animate-fade-in-up delay-2">
+            Monitor crop health, detect diseases, and forecast yield — all in one intelligent dashboard.
           </p>
-          <ul className="agrisense-benefits">
-            <li>✔️ Detect problems early</li>
-            <li>✔️ Improve productivity</li>
-            <li>✔️ Reduce pesticide waste</li>
-            <li>✔️ Protect long-term soil health</li>
+          <div className="hero-description animate-fade-in-up delay-3">
+            <p>
+              AgriSense brings together the power of{' '}
+              <span className="highlight-text">AI, data visualization, and modern design</span>{' '}
+              to help farmers make informed decisions with confidence. From detecting early signs of
+              disease to forecasting yield and optimizing field management, every feature is built
+              to make agriculture smarter, simpler, and more sustainable.
+            </p>
+          </div>
+          <ul className="agrisense-benefits animate-fade-in-up delay-4">
+            <li>
+              <span className="benefit-check">✓</span>
+              Detect problems early
+            </li>
+            <li>
+              <span className="benefit-check">✓</span>
+              Improve productivity
+            </li>
+            <li>
+              <span className="benefit-check">✓</span>
+              Reduce pesticide waste
+            </li>
+            <li>
+              <span className="benefit-check">✓</span>
+              Protect long-term soil health
+            </li>
           </ul>
         </div>
       </section>
 
-      {/* --- Why Choose Section (Stats) --- */}
-      <section className="why-choose-section">
-        <h2 className="why-choose-title animate-fade-in-up delay-3">
-          Why Choose AgriSense ?
-        </h2>
+      {/* ===== WHY CHOOSE SECTION ===== */}
+      <section className="why-choose-section" style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <h2 className="why-choose-title animate-fade-in-up">Why Choose AgriSense ?</h2>
         <div className="stats-cards-container">
-          <div className="stat-card animate-fade-in-up delay-4">
+          <div className="stat-card animate-fade-in-up delay-2">
             <span className="stat-number">90%</span>
-            <p className="stat-description">
-              model accuracy in disease detection
-            </p>
+            <p className="stat-description">model accuracy in disease detection</p>
           </div>
-          <div className="stat-card animate-fade-in-up delay-5">
-            <span className="stat-number">100+</span>
+          <div className="stat-card animate-fade-in-up delay-3">
+            <span className="stat-number">100</span>
             <p className="stat-description">successful farmer users</p>
           </div>
-          <div className="stat-card animate-fade-in-up delay-6">
+          <div className="stat-card animate-fade-in-up delay-4">
             <span className="stat-number">4.8 ⭐</span>
-            <p className="stat-description">based on pilot testing feedback</p>
+            <p className="stat-description">Average User Rating, based on pilot testing feedback</p>
           </div>
         </div>
       </section>
 
-      {/* --- Additional Content Section --- */}
-      <section className="additional-content-section">
-        <h3 className="section-heading animate-fade-in-up delay-7">
-          Empowering Farmers with Technology
-        </h3>
-        <p className="section-text animate-fade-in-up delay-8">
-          Our platform offers a comprehensive suite of tools designed to simplify
-          complex agricultural tasks. From real-time sensor data integration to
-          predictive analytics for pest outbreaks, **AgriSense is your trusted
-          partner** in achieving sustainable and profitable farming operations.
-        </p>
-      </section>
-
-      {/* --- Key Features Section --- */}
-      <section className="key-features-container">
-        <h2 className="section-heading features-title animate-fade-in-up delay-10">
-          Key Features
-        </h2>
+      {/* ===== KEY FEATURES SECTION ===== */}
+      <section className="key-features-section" id="features">
+        <h2 className="features-title animate-fade-in-up">Key Features</h2>
         <div className="features-cards-wrapper">
-          {/* Disease Detection Card */}
+          {/* Disease Detection */}
           <div
-            className="feature-card animate-fade-in-up delay-11"
-            onClick={handleDiseaseDetectionClick}
+            className="feature-card animate-fade-in-up delay-2"
+            onClick={() => navigate('/disease')}
             role="button"
-            tabIndex="0"
+            tabIndex={0}
+            onKeyDown={e => e.key === 'Enter' && navigate('/disease')}
           >
-            <span className="feature-icon"> 🩺 </span>
+            <span className="feature-icon">🩺</span>
             <h3 className="card-title">Disease Detection</h3>
+            <p className="card-subtitle">Spot issues before they spread.</p>
             <p className="card-description">
-              Spot issues before they spread. AgriSense uses **AI-powered image
-              analysis** to identify plant diseases instantly.
+              AgriSense uses AI-powered image analysis to identify plant diseases instantly.
             </p>
           </div>
 
-          
+          {/* Field Segmentation */}
           <div
-            className="feature-card animate-fade-in-up delay-12"
-            onClick={handleSegmentationClick}
+            className="feature-card animate-fade-in-up delay-3"
+            onClick={() => navigate('/field')}
             role="button"
-            tabIndex="0"
+            tabIndex={0}
+            onKeyDown={e => e.key === 'Enter' && navigate('/field')}
           >
-            <span className="feature-icon"> ☁️ </span>
+            <span className="feature-icon">🚁</span>
             <h3 className="card-title">Field Segmentation</h3>
+            <p className="card-subtitle">See your farm in data-driven color.</p>
             <p className="card-description">
-              See your farm in data-driven color. AgriSense leverages **UNet
-              segmentation models** to differentiate diseased crops, weeds, and
-              soil zones from drone or satellite images.
-
+              AgriSense leverages U-Net segmentation models to differentiate between crops, weeds,
+              and soil zones from drone or satellite images.
             </p>
           </div>
 
-          
+          {/* Yield Forecasting */}
           <div
-            className="feature-card animate-fade-in-up delay-13"
-            onClick={handleYieldForecastingClick} 
+            className="feature-card featured animate-fade-in-up delay-4"
+            onClick={() => navigate('/forecast')}
             role="button"
-            tabIndex="0"
+            tabIndex={0}
+            onKeyDown={e => e.key === 'Enter' && navigate('/forecast')}
           >
-            <span className="feature-icon"> 🚁 </span>
+            <span className="feature-icon">☁️</span>
             <h3 className="card-title">Yield Forecasting</h3>
+            <p className="card-subtitle">Predict your productivity with confidence.</p>
             <p className="card-description">
-              Predict your productivity with confidence. Our **LSTM-based
-              prediction model** analyzes weather patterns, soil data, and crop
-              history to forecast expected yield.
+              Our LSTM-based prediction model analyzes weather patterns, soil data, and crop history
+              to forecast expected yield.
             </p>
           </div>
         </div>
       </section>
 
-      {/* --- UPDATED STORIES SECTION (Testimonials) --- */}
-      <section className="stories-section">
-        <h2 className="stories-title animate-fade-in-up delay-14">
-          Stories Rooted in Change
-        </h2>
-
-       
-        <div className="testimonial-card-container animate-fade-in-up delay-15">
-       
+      {/* ===== TESTIMONIALS SECTION ===== */}
+      <section className="stories-section" id="testimonials">
+        <h2 className="stories-title animate-fade-in-up">Stories Rooted in Change</h2>
+        <div className="testimonial-card-container animate-fade-in-up delay-2">
           <div className="testimonial-content">
-          
             <div className="rating-box">
               <span className="star-rating">⭐⭐⭐⭐</span>
               <span className="rating-number">4.2</span>
             </div>
-
             <p className="testimonial-text">
-              AgriSense helped me detect a leaf disease before it spread across
-              my field. The instant alerts and clear image reports saved my
-              entire crop this season. It feels like having an expert agronomist
-              in my pocket!
+              "AgriSense helped me detect a leaf disease before it spread across my field.
+              The instant alerts and clear image reports saved my entire crop this season.
+              It feels like having an expert agronomist in my pocket!"
             </p>
-
             <p className="testimonial-author">
-              Ramesh Patel — <br />
+              Ramesh Patel —
               <span className="author-location">Wheat Farmer, Gujarat</span>
             </p>
           </div>
-
-          <div className="testimonial-image-placeholder">
-            
-          </div>
+          <div
+            className="testimonial-image-placeholder"
+            style={{ backgroundImage: `url(${snakePlantImage})` }}
+          />
         </div>
       </section>
+
     </div>
   );
 };

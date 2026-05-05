@@ -1,115 +1,212 @@
-
-
-:root {
-    --dark-green: #38761d;
-    --light-green-accent: #a9e083;
-    --text-color-light: #f0f0f0;
-}
+/* ===== AGRISENSE NAVBAR — Premium consistent design ===== */
 
 .agrisense-navbar {
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    
-   
-    background-color: var(--dark-green); 
-  
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); 
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: linear-gradient(90deg, #1b3a1b 0%, #243f24 60%, #1b3a1b 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
 }
 
 .navbar-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
 }
 
+/* ===== LOGO ===== */
 .navbar-logo {
-    font-size: 1.8em;
-    font-weight: 700;
-    color: var(--light-green-accent); 
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-style: italic;
+  color: #a9e083;
+  text-decoration: none;
+  flex-shrink: 0;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
 }
+.navbar-logo:hover { color: #c6f5a0; }
 
-nav {
-    display: flex
-;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1rem;
-    background: #38761d;
-    color: white;
-}
-
-
+/* ===== NAV LINKS ===== */
 .navbar-links {
-    display: flex;
-    gap: 30px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  flex: 1;
+  justify-content: center;
 }
 
 .nav-link {
-   
-    color: white; 
-    text-decoration: none;
-    font-size: 1em;
-    padding: 5px 0;
-    transition: color 0.2s ease, border-bottom 0.2s ease;
-    font-weight: 500;
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  white-space: nowrap;
 }
-
 .nav-link:hover {
-    color: var(--light-green-accent);
-    border-bottom: 2px solid var(--light-green-accent);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+/* Active = underline ONLY — no boxy background */
+.nav-link.active {
+  color: #a9e083;
+  background: transparent;
+  border-bottom-color: #a9e083;
 }
 
-
+/* ===== AUTH BUTTONS ===== */
 .navbar-actions {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .nav-btn {
-    padding: 8px 18px;
-    border: none;
-    border-radius: 20px;
-    font-size: 0.9em;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  padding: 7px 20px;
+  border-radius: 22px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  font-family: 'Poppins', sans-serif;
 }
 
 .login-btn {
-   
-    background-color: transparent;
-    color: var(--light-green-accent);
-    border: 2px solid var(--light-green-accent);
+  background: transparent;
+  color: #a9e083;
+  border: 1.5px solid rgba(169, 224, 131, 0.7);
 }
-
 .login-btn:hover {
-    background-color: rgba(169, 224, 131, 0.1); 
-    color: white;
+  background: rgba(169, 224, 131, 0.1);
+  border-color: #a9e083;
+  color: #fff;
 }
 
 .signup-btn {
-   
-    background-color: var(--light-green-accent);
-    color: var(--dark-green);
-    box-shadow: 0 4px 10px rgba(169, 224, 131, 0.4);
+  background: #a9e083;
+  color: #1a3a1a;
+  border: 1.5px solid #a9e083;
+  box-shadow: 0 2px 10px rgba(169, 224, 131, 0.25);
 }
-
 .signup-btn:hover {
-    background-color: #8ccf61;
-    transform: translateY(-2px);
+  background: #c0f090;
+  border-color: #c0f090;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(169, 224, 131, 0.35);
 }
 
-/* --- Responsiveness --- */
+/* Profile button */
+.profile-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  padding: 6px 16px;
+  border-radius: 22px;
+  font-size: 0.84rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  font-family: 'Poppins', sans-serif;
+}
+.profile-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+.logout-btn {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 16px;
+  border-radius: 22px;
+  font-size: 0.84rem;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.2s;
+}
+.logout-btn:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* ===== INNER PAGES — Olive gradient ===== */
+.agrisense-navbar.inner-page {
+  background: linear-gradient(90deg, #3a6b28 0%, #4a7c34 40%, #3a6b28 100%);
+  border-bottom: none;
+  box-shadow: 0 2px 18px rgba(30, 70, 15, 0.3);
+}
+.agrisense-navbar.inner-page .navbar-logo  { color: #d0f0a0; }
+.agrisense-navbar.inner-page .navbar-logo:hover { color: #fff; }
+.agrisense-navbar.inner-page .nav-link     { color: rgba(255,255,255,0.8); }
+.agrisense-navbar.inner-page .nav-link:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+.agrisense-navbar.inner-page .nav-link.active {
+  color: #d0f0a0;
+  border-bottom-color: #d0f0a0;
+  background: transparent;
+}
+.agrisense-navbar.inner-page .profile-btn {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.3);
+}
+.agrisense-navbar.inner-page .logout-btn {
+  color: rgba(255,255,255,0.75);
+  border-color: rgba(255,255,255,0.28);
+}
+.agrisense-navbar.inner-page .login-btn {
+  color: #d0f0a0;
+  border-color: rgba(208,240,160,0.7);
+}
+.agrisense-navbar.inner-page .signup-btn {
+  background: #d0f0a0;
+  color: #1a3a1a;
+  border-color: #d0f0a0;
+}
+
+/* ===== AUTH PAGES — transparent dark overlay ===== */
+.agrisense-navbar.auth-page {
+  background: rgba(15, 32, 15, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 1px 20px rgba(0,0,0,0.4);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .navbar-links { gap: 2px; }
+  .nav-link { padding: 6px 10px; font-size: 0.82rem; }
+}
 @media (max-width: 768px) {
-    .navbar-links {
-        display: none; 
-    }
-    .navbar-container {
-        justify-content: space-between;
-    }
+  .navbar-links { display: none; }
+  .navbar-container { padding: 0 4%; }
 }

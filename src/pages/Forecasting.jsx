@@ -1,163 +1,218 @@
-import React, { useState } from 'react';
-import "./Forecasting.css";
+import React, { useState, useRef } from 'react';
+import './InnerPage.css';
 
+const UploadBox = ({ id, file, onFile, isDragging, setDragging }) => {
+  const ref = useRef();
 
+  const onDragOver  = e => { e.preventDefault(); setDragging(true); };
+  const onDragLeave = e => { e.preventDefault(); setDragging(false); };
+  const onDrop      = e => {
+    e.preventDefault(); setDragging(false);
+    if (e.dataTransfer.files[0]) onFile(e.dataTransfer.files[0]);
+  };
 
-const UploadBox = ({ id, onFileSelect, selectedFile, label, isDragging, onDragEvents }) => (
+  return (
     <div
-        className={`image-upload-box ${id} ${isDragging ? 'dragging' : ''}`}
-        {...onDragEvents}
-        onClick={() => document.getElementById(id).click()}
+      className={`upload-zone${isDragging ? ' dragging' : ''}`}
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}
+      onDrop={onDrop}
+      onClick={() => ref.current?.click()}
     >
-        <input
-            type="file"
-            id={id}
-            onChange={onFileSelect}
-            style={{ display: 'none' }}
-            accept="image/*"
-        />
-
-        {selectedFile ? (
-            <p className="file-info">File ready: **{selectedFile.name}**</p>
-        ) : (
-            <>
-              
-                <svg className="cloud-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M288 184.4V80c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v104.4c-47.5 10.6-88 38.6-114 74.9-3.7 5.1-5.6 11.2-5.6 17.5 0 16.5 13.5 30 30 30h336c16.5 0 30-13.5 30-30 0-6.3-2-12.4-5.6-17.5-26-36.3-66.5-64.3-114-74.9zm136 105.6h-336c-39.7 0-72 32.3-72 72s32.3 72 72 72h336c39.7 0 72-32.3 72-72s-32.3-72-72-72z"/></svg>
-                <p className="drag-drop-text">
-                    Drag & Drop **{label}**
-                    <br />
-                    or <span className="browse-link">browse</span>
-                </p>
-            </>
-        )}
+      <input
+        ref={ref}
+        id={id}
+        type="file"
+        accept="image/*"
+        onChange={e => onFile(e.target.files[0])}
+      />
+      <svg className="cloud-upload-icon" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <polyline points="16 16 12 12 8 16"/>
+        <line x1="12" y1="12" x2="12" y2="21"/>
+        <path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/>
+      </svg>
+      {file ? (
+        <div className="file-selected">✅ {file.name}</div>
+      ) : (
+        <p className="upload-zone-text">
+          Drag &amp; Drop to upload<br />
+          or <span className="upload-browse-link">browse</span>
+        </p>
+      )}
     </div>
-);
-
-
-const Forecasting = () => {
-    
-    const [selectedOriginalFile, setSelectedOriginalFile] = useState(null);
-    const [selectedMaskedFile, setSelectedMaskedFile] = useState(null);
-    
-
-    const [isOriginalDragging, setIsOriginalDragging] = useState(false); 
-    const [isMaskedDragging, setIsMaskedDragging] = useState(false); 
-
-    const [soilArea, setSoilArea] = useState('N/A');
-    const [weedArea, setWeedArea] = useState('N/A');
-    const [healthyArea, setHealthyArea] = useState('N/A');
-
-
-   
-    const createDragHandlers = (setIsDragging, setFile) => ({
-        onDragEnter: (e) => { e.preventDefault(); e.stopPropagation(); setIsDragging(true); },
-        onDragOver: (e) => { e.preventDefault(); e.stopPropagation(); setIsDragging(true); },
-        onDragLeave: (e) => { e.preventDefault(); e.stopPropagation(); setIsDragging(false); },
-        onDrop: (e) => {
-            e.preventDefault(); e.stopPropagation(); setIsDragging(false);
-            if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-                const file = e.dataTransfer.files[0];
-                setFile(file);
-                e.dataTransfer.clearData();
-                console.log('File dropped:', file.name);
-            }
-        },
-    });
-
-    const originalDragHandlers = createDragHandlers(setIsOriginalDragging, setSelectedOriginalFile);
-    const maskedDragHandlers = createDragHandlers(setIsMaskedDragging, setSelectedMaskedFile);
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('--- Form Submitted ---');
-        console.log('Original Image:', selectedOriginalFile ? selectedOriginalFile.name : 'N/A');
-        console.log('Masked Image:', selectedMaskedFile ? selectedMaskedFile.name : 'N/A');
-      
-        if (selectedOriginalFile && selectedMaskedFile) {
-            
-            setSoilArea('35.2%');
-            setWeedArea('5.8%');
-            setHealthyArea('59.0%');
-            alert("Analysis submitted. Results are displayed in the Output section.");
-        } else {
-            alert("Please upload both Original and Masked images.");
-        }
-    };
-    
-
-    return (
-        <div className="forecasting-container">
-            
-            <div className="content-area">
-                
-                <div className="dual-upload-container">
-                  
-                    <div className="upload-column">
-                        <p className="upload-header">Upload **Original Plant Image**</p>
-                        <UploadBox 
-                            id="file-upload-original"
-                            onFileSelect={(e) => setSelectedOriginalFile(e.target.files[0])}
-                            selectedFile={selectedOriginalFile}
-                            label="Original Image"
-                            isDragging={isOriginalDragging}
-                            onDragEvents={originalDragHandlers}
-                        />
-                    </div>
-                    
-                
-                    <div className="upload-column">
-                        <p className="upload-header">Upload **RGB (Masked) Image**</p>
-                        <UploadBox 
-                            id="file-upload-masked"
-                            onFileSelect={(e) => setSelectedMaskedFile(e.target.files[0])}
-                            selectedFile={selectedMaskedFile}
-                            label="Masked Image"
-                            isDragging={isMaskedDragging}
-                            onDragEvents={maskedDragHandlers}
-                        />
-                    </div>
-                </div>
-
-              
-                <div className="upload-options minimal-upload">
-                    <button className="upload-btn" onClick={() => document.getElementById('file-upload-original').click()}>Upload</button>
-                </div>
-            </div>
-
-
-            
-            <form className="controls-area minimal-controls" onSubmit={handleSubmit}>
-                
-               
-                <div className="output-section">
-                    <h3 className="output-header">Analysis Results :</h3>
-                    <div className="output-field">
-                        <label>Soil Area :</label>
-                        <p className="output-value **soil**">{soilArea}</p>
-                    </div>
-                    <div className="output-field">
-                        <label>Weed Area :</label>
-                        <p className="output-value **weed**">{weedArea}</p>
-                    </div>
-                    <div className="output-field">
-                        <label>Healthy Area :</label>
-                        <p className="output-value **healthy**">{healthyArea}</p>
-                    </div>
-                </div>
-               
-
-                <button type="submit" className="enter-btn">Enter</button>
-            </form>
-
-         
-            <div className="background-design">
-                <div className="curve-light"></div>
-                <div className="curve-dark"></div>
-            </div>
-
-        </div>
-    );
+  );
 };
 
-export default Forecasting;
+export default function Forecasting() {
+  const [originalFile, setOriginalFile]   = useState(null);
+  const [maskedFile, setMaskedFile]       = useState(null);
+  const [isDragOrig, setDragOrig]         = useState(false);
+  const [isDragMask, setDragMask]         = useState(false);
+  const [result, setResult]               = useState(null);
+  const [loading, setLoading]             = useState(false);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!originalFile || !maskedFile) {
+      alert("Please upload both the original and masked images.");
+      return;
+    }
+    setLoading(true);
+    setTimeout(() => {
+      setResult({
+        soilArea:    '35% (10.06 hectares)',
+        weedArea:    '6% (10.06 hec/wee)',
+        healthyArea: '74% (0.30 hectare)',
+        riskAnalysis: [
+          'Drought Risk: Low (12%)',
+          'Pest Infestation Risk: Moderate (24%)',
+          'Yield Variance Margin: +0.3 tons/ha',
+        ],
+        summaryNote:
+          'This forecast suggests a healthy yield with steady upward growth. Timely irrigation and balanced nutrient management can help maintain productivity above the seasonal average.',
+        previewUrl: originalFile ? URL.createObjectURL(originalFile) : null,
+      });
+      setLoading(false);
+    }, 1800);
+  };
+
+  return (
+    <div className="inner-page-wrapper">
+      {/* Decorative hills */}
+      <div className="inner-hills-bg">
+        <div className="inner-hill-light" />
+        <div className="inner-hill-dark" />
+      </div>
+
+      <div className="inner-content">
+        <h1 className="inner-page-title">Field Segmentation</h1>
+
+        <p className="upload-zone-hint">
+          click a clear photo of your crop or leaf— whether from your phone camera, drone, or stored gallery.
+        </p>
+
+        {/* Original Image upload */}
+        <UploadBox
+          id="orig-upload"
+          file={originalFile}
+          onFile={setOriginalFile}
+          isDragging={isDragOrig}
+          setDragging={setDragOrig}
+        />
+        <button
+          className="upload-btn-dark"
+          type="button"
+          onClick={() => document.getElementById('orig-upload').click()}
+        >
+          Upload
+        </button>
+
+        <p className="upload-zone-hint" style={{ marginTop: 24 }}>
+          Upload a clear RGB image of the plant to generate a segmented output that distinctly highlights the crop, weed, and soil regions for precise field analysis.
+        </p>
+
+        {/* Masked Image upload */}
+        <UploadBox
+          id="mask-upload"
+          file={maskedFile}
+          onFile={setMaskedFile}
+          isDragging={isDragMask}
+          setDragging={setDragMask}
+        />
+        <button
+          className="upload-btn-dark"
+          type="button"
+          onClick={() => document.getElementById('mask-upload').click()}
+        >
+          Upload
+        </button>
+
+        {/* Submit */}
+        <form onSubmit={handleSubmit}>
+          <button
+            type="submit"
+            className="submit-btn-blue"
+            disabled={loading}
+          >
+            {loading ? 'Analyzing…' : 'Submit'}
+          </button>
+        </form>
+
+        {/* Loading */}
+        {loading && (
+          <div className="loading-section">
+            <div className="loading-spinner" />
+            <p>Processing segmentation… Please wait</p>
+          </div>
+        )}
+
+        {/* ===== RESULT OUTPUT ===== */}
+        {result && (
+          <div style={{ marginTop: 40 }}>
+            <p style={{ color: '#4a7c3f', fontStyle: 'italic', fontSize: '0.9rem', marginBottom: 20 }}>
+              The data analysis has been conducted successfully, and the findings are presented below.
+            </p>
+
+            <div style={{ display: 'flex', gap: 28, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+              {/* Segmented Image */}
+              {result.previewUrl && (
+                <img
+                  src={result.previewUrl}
+                  alt="Segmented field"
+                  style={{ width: 280, height: 220, objectFit: 'cover', borderRadius: 10, border: '2px solid #c5d9b8' }}
+                />
+              )}
+
+              {/* Results */}
+              <div style={{ flex: 1, minWidth: 200 }}>
+                <div className="result-row">
+                  <strong>Soil Area :</strong><br />
+                  <span style={{ fontSize: '0.85rem', color: '#5a7a5a' }}>{result.soilArea}</span>
+                </div>
+                <div className="result-row">
+                  <strong>Weed Area :</strong><br />
+                  <span style={{ fontSize: '0.85rem', color: '#5a7a5a' }}>{result.weedArea}</span>
+                </div>
+                <div className="result-row">
+                  <strong>Healthy Area :</strong><br />
+                  <span style={{ fontSize: '0.85rem', color: '#5a7a5a' }}>{result.healthyArea}</span>
+                </div>
+
+                <div className="result-row" style={{ marginTop: 16 }}>
+                  <strong>📊 Risk Analysis</strong>
+                  <ul className="result-bullets">
+                    {result.riskAnalysis.map((r, i) => <li key={i}>{r}</li>)}
+                  </ul>
+                </div>
+
+                <div className="result-row">
+                  <strong>📝 Summary Note</strong>
+                  <p style={{ fontSize: '0.85rem', color: '#5a7a5a', marginTop: 6, fontStyle: 'italic', lineHeight: 1.6 }}>
+                    {result.summaryNote}
+                  </p>
+                </div>
+
+                {/* Download card */}
+                <div className="download-card" style={{ marginTop: 16 }}>
+                  <div>
+                    <div className="download-card-label">📋 Download Report</div>
+                    <div className="download-actions">
+                      <button className="download-action-btn">
+                        <div className="download-action-icon">📄</div>
+                        Download PDF Report
+                      </button>
+                      <button className="download-action-btn">
+                        <div className="download-action-icon">🤝</div>
+                        Share to Advisor
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

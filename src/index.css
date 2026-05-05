@@ -1,70 +1,92 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  /* display: flex;
-  place-items: center; */
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+/* ===== AGRISENSE GLOBAL DESIGN SYSTEM ===== */
 @import "leaflet/dist/leaflet.css";
 
+/* ===== PROJECT COLOR PALETTE ===== */
+:root {
+  /* Greens */
+  --green-900:  #0f2a10;   /* deepest dark background */
+  --green-800:  #1b3a1b;   /* nav / dark sections */
+  --green-700:  #2e6b18;   /* primary action color */
+  --green-600:  #3a7d20;   /* hover actions */
+  --green-500:  #4a7c3f;   /* mid-tone green */
+  --green-400:  #6aaa50;   /* lighter functional */
+  --green-300:  #a9e083;   /* accent / highlights */
+  --green-200:  #c6f5a0;   /* hover on accent */
+  --green-100:  #e8f5e0;   /* very light bg tint */
+  --green-50:   #f4f8f0;   /* page background */
+
+  /* Text */
+  --text-dark:   #1c2b1c;
+  --text-mid:    #4a5e4a;
+  --text-light:  #8aaa8a;
+  --text-white:  #ffffff;
+  --text-faded:  rgba(255,255,255,0.55);
+
+  /* Borders */
+  --border-dark:   rgba(255,255,255,0.12);
+  --border-light:  #d4e6c3;
+
+  /* Shadows */
+  --shadow-sm:  0 2px 12px rgba(0,0,0,0.10);
+  --shadow-md:  0 4px 24px rgba(0,0,0,0.14);
+  --shadow-lg:  0 12px 48px rgba(0,0,0,0.22);
+
+  /* Fonts */
+  --font-body:     'Poppins', sans-serif;
+  --font-display:  'Playfair Display', Georgia, serif;
+
+  /* Radius */
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  22px;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--green-900);
+  color: var(--text-dark);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+button { font-family: var(--font-body); cursor: pointer; border: none; outline: none; }
+input, select, textarea { font-family: var(--font-body); }
+img { max-width: 100%; display: block; }
+
+/* ===== UTILITY ===== */
+.ag-container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.animate-fade-in-up { animation: fadeInUp 0.65s ease-out both; }
+.animate-fade-in    { animation: fadeIn 0.55s ease both; }
+
+/* Delay utilities */
+.delay-1  { animation-delay: 0.10s; }
+.delay-2  { animation-delay: 0.20s; }
+.delay-3  { animation-delay: 0.35s; }
+.delay-4  { animation-delay: 0.50s; }
+.delay-5  { animation-delay: 0.65s; }
+.delay-6  { animation-delay: 0.80s; }
+.delay-7  { animation-delay: 0.95s; }
+.delay-8  { animation-delay: 1.10s; }

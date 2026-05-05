@@ -1,65 +1,120 @@
-
-
-:root {
-    --dark-green: #38761d;
-    --light-green-accent: #a9e083;
-    --text-color-light: #f0f0f0;
+/* ===== AGRISENSE FOOTER — Consistent on ALL pages ===== */
+.agrisense-footer {
+  background: linear-gradient(180deg, #1a3a10 0%, #0d2208 100%);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 64px 5% 28px;
+  position: relative;
+  overflow: hidden;
 }
 
-.agrisense-footer-minimal {
-    
-    background-color: var(--dark-green);
-    color: var(--text-color-light);
-    padding: 20px 8%;
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    border-top: 3px solid var(--light-green-accent);
-    box-sizing: border-box; 
+/* Faint farm bg texture */
+.agrisense-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&auto=format&fit=crop&q=20') center/cover no-repeat;
+  opacity: 0.07;
+  pointer-events: none;
 }
 
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
+.footer-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 52px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.footer-links-minimal {
-    margin-bottom: 10px;
+/* Brand column */
+.footer-brand { max-width: 320px; }
+
+.footer-logo {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.9rem;
+  font-weight: 600;
+  font-style: italic;
+  color: #a9e083;
+  margin-bottom: 6px;
+  display: block;
 }
 
-.footer-links-minimal a {
-    color: var(--text-color-light);
-    text-decoration: none;
-    font-size: 0.9em;
-    padding: 0 15px;
-    transition: color 0.2s ease;
+.footer-tagline {
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.42);
+  margin-bottom: 14px;
+  font-style: italic;
 }
 
-.footer-links-minimal a:hover {
-    color: var(--light-green-accent);
+.footer-description {
+  font-size: 0.83rem;
+  line-height: 1.72;
+  color: rgba(255, 255, 255, 0.52);
 }
 
-.separator {
-    color: rgba(255, 255, 255, 0.4);
-    font-size: 0.9em;
+/* Link columns */
+.footer-links-col h4 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 20px;
 }
 
-
-.footer-copyright {
-    font-size: 0.8em;
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0;
+.footer-links-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
 }
 
+.footer-links-col ul li a {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: block;
+}
+.footer-links-col ul li a:hover { color: #a9e083; }
 
-@media (max-width: 600px) {
-    .agrisense-footer-minimal {
-        padding: 15px 4%;
-    }
-    .footer-links-minimal a {
-        display: block;
-        padding: 5px 0;
-    }
-    .separator {
-        display: none; 
-    }
+/* Bottom bar */
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 22px auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 20px;
+}
+.footer-bottom-links a {
+  color: rgba(255, 255, 255, 0.28);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-bottom-links a:hover { color: rgba(255,255,255,0.6); }
+
+@media (max-width: 900px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+  .footer-brand { grid-column: 1 / -1; max-width: 100%; }
+}
+
+@media (max-width: 560px) {
+  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  .agrisense-footer { padding: 48px 4% 24px; }
 }
