@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import GetStartedButton from "../components/GetStartedButton";
 import "./Home.css";
 
 import backgroundImage from "../assets/farm-field-bg.jpg";
@@ -49,7 +48,9 @@ const Home = () => {
             </li>
           </ul>
           <div className="hero-cta-row animate-fade-in-up delay-5">
-            <GetStartedButton />
+            <button type="button" className="hero-btn primary" onClick={() => navigate('/signup')}>
+              Get Started
+            </button>
             <button
               type="button"
               className="hero-btn secondary"

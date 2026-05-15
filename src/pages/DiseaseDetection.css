@@ -369,3 +369,357 @@
     background-color: #38761d;
     margin-top: 40px;
 }
+
+/* ===== RESPONSIVE STYLES ===== */
+
+/* ===== TABLET (481px - 768px) ===== */
+@media (max-width: 768px) {
+  .disease-page-container {
+    min-height: auto;
+  }
+
+  .disease-content-layout {
+    flex-direction: column;
+    padding: 15px 4%;
+    gap: 20px;
+  }
+
+  .sidebar {
+    width: 100%;
+    position: static;
+    top: auto;
+    padding: 14px;
+    border-radius: 8px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .sidebar-label {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .sidebar-input-group {
+    margin-bottom: 18px;
+  }
+
+  .option-item {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .symptoms-input {
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+
+  .analyze-button {
+    width: 90px;
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .main-content {
+    flex-grow: 1;
+  }
+
+  .detection-card-container {
+    padding: 20px;
+    padding-bottom: 100px;
+    border-radius: 8px;
+  }
+
+  .detection-header {
+    margin-bottom: 8px;
+  }
+
+  .leaf-icon {
+    font-size: 24px;
+    margin-right: 8px;
+  }
+
+  .detection-title {
+    font-size: 24px;
+  }
+
+  .detection-tagline {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .uploader-area {
+    padding: 24px 0;
+  }
+
+  .upload-leaf-icon {
+    font-size: 50px;
+    margin-bottom: 8px;
+  }
+
+  .upload-instruction-main {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .file-uploader-box {
+    padding: 20px 14px;
+    border-radius: 8px;
+  }
+
+  .upload-icon {
+    font-size: 40px;
+    margin-bottom: 8px;
+  }
+
+  .drag-text {
+    font-size: 12px;
+  }
+
+  .choose-file-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .file-name-display {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .gallery-and-upload-section {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 16px;
+  }
+
+  .gallery-link {
+    font-size: 11px;
+    width: 100%;
+  }
+
+  .gallery-icon {
+    font-size: 22px;
+    margin-right: 8px;
+  }
+
+  .main-upload-btn {
+    width: 100%;
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+
+  .result-section {
+    padding: 14px;
+    margin-top: 20px;
+    border-radius: 4px;
+  }
+
+  .result-section h3 {
+    font-size: 16px;
+  }
+
+  .footer {
+    padding: 16px 4%;
+    font-size: 13px;
+  }
+}
+
+/* ===== MOBILE (up to 480px) ===== */
+@media (max-width: 480px) {
+  .disease-page-container {
+    background-color: #f5faf5;
+  }
+
+  .disease-content-layout {
+    flex-direction: column;
+    padding: 10px 3%;
+    gap: 14px;
+  }
+
+  .sidebar {
+    width: 100%;
+    position: static;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  }
+
+  .sidebar-label {
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .sidebar-input-group {
+    margin-bottom: 14px;
+  }
+
+  .input-options-container {
+    gap: 0;
+  }
+
+  .option-item {
+    font-size: 12px;
+    margin-bottom: 5px;
+    gap: 6px;
+  }
+
+  .dummy-box {
+    width: 14px;
+    height: 14px;
+  }
+
+  .symptoms-input {
+    font-size: 13px;
+    padding: 5px 8px;
+    border-radius: 3px;
+  }
+
+  .analyze-button {
+    width: 80px;
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  .detection-card-container {
+    padding: 14px;
+    padding-bottom: 80px;
+    border-radius: 6px;
+    border-width: 1px;
+  }
+
+  .detection-header {
+    margin-bottom: 6px;
+  }
+
+  .leaf-icon {
+    font-size: 20px;
+    margin-right: 6px;
+  }
+
+  .detection-title {
+    font-size: 18px;
+  }
+
+  .detection-tagline {
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+
+  .uploader-area {
+    padding: 16px 0;
+  }
+
+  .upload-leaf-icon {
+    font-size: 40px;
+    margin-bottom: 6px;
+  }
+
+  .upload-instruction-main {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .image-uploader-wrapper {
+    margin-bottom: 14px;
+  }
+
+  .file-uploader-box {
+    padding: 14px 10px;
+    border-radius: 6px;
+    border-width: 1.5px;
+  }
+
+  .upload-content {
+    gap: 4px;
+  }
+
+  .upload-icon {
+    font-size: 32px;
+    margin-bottom: 6px;
+  }
+
+  .drag-text {
+    font-size: 11px;
+    margin-top: 6px;
+  }
+
+  .file-input-display {
+    flex-direction: column;
+    max-width: 100%;
+    border-radius: 4px;
+    margin-top: 8px;
+  }
+
+  .choose-file-btn {
+    width: 100%;
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  .file-name-display {
+    width: 100%;
+    padding: 6px;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .gallery-and-upload-section {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+  }
+
+  .gallery-link {
+    font-size: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .gallery-icon {
+    font-size: 18px;
+    margin-right: 6px;
+  }
+
+  .main-upload-btn {
+    width: 100%;
+    padding: 6px 16px;
+    font-size: 12px;
+  }
+
+  .result-section {
+    padding: 10px;
+    margin-top: 14px;
+    border-radius: 4px;
+    border-top-width: 1.5px;
+  }
+
+  .result-section h3 {
+    font-size: 14px;
+  }
+
+  .loading {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .spinner {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+  }
+
+  .footer {
+    padding: 12px 3%;
+    font-size: 11px;
+  }
+}

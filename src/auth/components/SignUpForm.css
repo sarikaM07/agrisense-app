@@ -219,8 +219,129 @@
 @keyframes spin { to { transform: rotate(360deg); } }
 
 @media (max-width: 768px) {
-  .signup-page { flex-direction: column; padding-top: 64px; }
-  .signup-left { display: none; }
-  .signup-right { padding: 36px 5%; justify-content: center; }
-  .signup-card { max-width: 100%; width: 100%; }
+  .signup-page {
+    flex-direction: column;
+    padding-top: 56px;
+  }
+  
+  .signup-left {
+    display: none;
+  }
+  
+  .signup-right {
+    padding: 30px 4%;
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .signup-card {
+    padding: 32px 24px;
+    max-width: 100%;
+    width: 100%;
+    width: 100%;
+    border-radius: 16px;
+  }
+  
+  .signup-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .signup-field {
+    margin-bottom: 16px;
+  }
+  
+  .signup-label {
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+  }
+  
+  .signup-input {
+    padding: 7px 28px 7px 0;
+    font-size: 0.85rem;
+  }
+  
+  .password-toggle {
+    bottom: 7px;
+  }
+  
+  .signup-submit {
+    padding: 11px;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    margin-bottom: 12px;
+    gap: 6px;
+  }
+  
+  .signup-login {
+    font-size: 0.75rem;
+  }
+  
+  .signup-message {
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    font-size: 0.8rem;
+  }
+  
+  .btn-spinner {
+    width: 14px;
+    height: 14px;
+    border-width: 1.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-page {
+    padding-top: 52px;
+  }
+  
+  .signup-right {
+    padding: 20px 3%;
+  }
+  
+  .signup-card {
+    padding: 20px 14px;
+    border-radius: 12px;
+  }
+  
+  .signup-title {
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+  }
+  
+  .signup-field {
+    margin-bottom: 12px;
+  }
+  
+  .signup-label {
+    font-size: 0.75rem;
+    margin-bottom: 5px;
+  }
+  
+  .signup-input {
+    padding: 5px 26px 5px 0;
+    font-size: 0.8rem;
+    border-bottom-width: 1px;
+  }
+  
+  .password-toggle {
+    bottom: 5px;
+  }
+  
+  .signup-submit {
+    padding: 9px;
+    font-size: 0.75rem;
+    margin-top: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .signup-login {
+    font-size: 0.7rem;
+  }
+  
+  .signup-message {
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    font-size: 0.75rem;
+  }
 }

@@ -205,7 +205,9 @@
 @media (max-width: 900px) {
   .navbar-links { gap: 2px; }
   .nav-link { padding: 6px 10px; font-size: 0.82rem; }
+  .navbar-logo { font-size: 1.4rem; }
 }
+
 .navbar-toggle {
   display: none;
   flex-direction: column;
@@ -235,9 +237,18 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* ===== TABLET ===== */
 @media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 4%;
+    height: 56px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .navbar-logo { font-size: 1.3rem; }
+  
   .navbar-toggle { display: flex; }
-  .navbar-container { padding: 0 4%; flex-wrap: wrap; }
 
   .navbar-links {
     display: none;
@@ -255,6 +266,45 @@
     padding: 10px 12px;
     border-bottom: none;
     border-radius: 8px;
+    font-size: 0.8rem;
   }
-  .navbar-actions { margin-left: auto; }
+  .navbar-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-left: auto;
+  }
+  .nav-btn { padding: 6px 14px; font-size: 0.75rem; }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 480px) {
+  .navbar-container {
+    padding: 0 3%;
+    height: 52px;
+    gap: 8px;
+  }
+
+  .navbar-logo { font-size: 1.1rem; }
+  
+  .navbar-actions {
+    gap: 4px;
+    order: 2;
+  }
+  
+  .nav-btn {
+    padding: 5px 10px;
+    font-size: 0.7rem;
+  }
+  
+  .login-btn, .signup-btn {
+    padding: 5px 12px;
+  }
+  
+  .profile-btn, .logout-btn {
+    padding: 4px 10px;
+    font-size: 0.7rem;
+  }
+  
+  .navbar-links .nav-link { padding: 8px 10px; font-size: 0.75rem; }
 }

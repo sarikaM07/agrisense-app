@@ -73,3 +73,76 @@
   background: #4a7c3f;
   border-radius: 50% 0 0 0 / 80px 0 0 0;
 }
+
+/* ===== RESPONSIVE STYLES ===== */
+
+/* ===== TABLET (481px - 768px) ===== */
+@media (max-width: 768px) {
+  .map-page {
+    padding: 24px 4% 100px;
+  }
+
+  .map-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 6px;
+  }
+
+  .map-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 18px;
+  }
+
+  .map-container-wrap {
+    border-radius: 12px;
+    height: min(400px, 60vh);
+  }
+
+  .map-hills {
+    height: 100px;
+  }
+
+  .map-hill-light {
+    height: 80px;
+  }
+
+  .map-hill-dark {
+    height: 90px;
+    width: 45%;
+  }
+}
+
+/* ===== MOBILE (up to 480px) ===== */
+@media (max-width: 480px) {
+  .map-page {
+    padding: 16px 3% 70px;
+  }
+
+  .map-title {
+    font-size: clamp(1.3rem, 2.8vw, 1.8rem);
+    margin-bottom: 4px;
+  }
+
+  .map-subtitle {
+    font-size: 0.75rem;
+    margin-bottom: 14px;
+  }
+
+  .map-container-wrap {
+    border-radius: 10px;
+    height: min(320px, 55vh);
+    border-width: 1px;
+  }
+
+  .map-hills {
+    height: 70px;
+  }
+
+  .map-hill-light {
+    height: 55px;
+  }
+
+  .map-hill-dark {
+    height: 65px;
+    width: 50%;
+  }
+}

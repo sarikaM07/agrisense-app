@@ -264,12 +264,228 @@
 .action-reports { background: #fff3e0; color: #e65100; }
 
 @media (max-width: 768px) {
-  .profile-stats-row { grid-template-columns: 1fr; }
-  .profile-bottom-grid { grid-template-columns: 1fr; }
+  .profile-page {
+    padding: 20px 4% 40px;
+  }
+
+  .profile-card {
+    padding: 18px 20px;
+    gap: 16px;
+    flex-direction: column;
+  }
+
+  .profile-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .profile-name {
+    font-size: 1.1rem;
+  }
+
+  .profile-edit-btn {
+    position: static;
+    align-self: flex-start;
+    margin-top: 8px;
+    font-size: 0.75rem;
+    padding: 5px 12px;
+  }
+
+  .profile-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .stat-mini-card {
+    padding: 16px;
+  }
+
+  .stat-mini-value {
+    font-size: 1.5rem;
+  }
+
+  .profile-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .farms-card, .actions-card {
+    padding: 18px;
+  }
+
+  .farms-card h3, .actions-card h3 {
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+
+  .farm-item {
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  .farm-thumb, .farm-thumb-placeholder {
+    width: 60px;
+    height: 45px;
+  }
+
+  .farm-name {
+    font-size: 0.85rem;
+  }
+
+  .farm-location, .farm-area {
+    font-size: 0.75rem;
+  }
+
+  .actions-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .action-btn {
+    padding: 14px 8px;
+    font-size: 0.75rem;
+    gap: 6px;
+  }
+
+  .action-btn svg {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 540px) {
-  .profile-card { flex-direction: column; }
-  .profile-edit-btn { position: static; align-self: flex-start; margin-top: 12px; }
-  .profile-stats-row { grid-template-columns: 1fr; }
+  .profile-page {
+    padding: 14px 3% 30px;
+  }
+
+  .profile-card {
+    padding: 14px 14px;
+    gap: 12px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 8px rgba(60, 100, 40, 0.05);
+  }
+
+  .profile-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .profile-name-row {
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+
+  .profile-name {
+    font-size: 0.95rem;
+  }
+
+  .profile-badge {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+  }
+
+  .profile-detail {
+    font-size: 0.8rem;
+    gap: 6px;
+    margin-bottom: 3px;
+  }
+
+  .profile-member {
+    font-size: 0.75rem;
+    margin-top: 4px;
+  }
+
+  .profile-edit-btn {
+    position: static;
+    align-self: flex-start;
+    margin-top: 6px;
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 16px;
+  }
+
+  .profile-stats-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .stat-mini-card {
+    padding: 12px;
+    justify-content: space-between;
+  }
+
+  .stat-mini-label {
+    font-size: 0.75rem;
+  }
+
+  .stat-mini-value {
+    font-size: 1.3rem;
+  }
+
+  .stat-mini-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .profile-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .farms-card, .actions-card {
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .farms-card h3, .actions-card h3 {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  .farm-item {
+    padding: 8px 0;
+    gap: 8px;
+  }
+
+  .farm-thumb, .farm-thumb-placeholder {
+    width: 50px;
+    height: 38px;
+    border-radius: 6px;
+  }
+
+  .farm-name {
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+  }
+
+  .farm-location {
+    font-size: 0.7rem;
+  }
+
+  .farm-area {
+    font-size: 0.7rem;
+    margin-bottom: 4px;
+  }
+
+  .farm-tag {
+    font-size: 0.65rem;
+    padding: 1px 6px;
+  }
+
+  .actions-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .action-btn {
+    padding: 12px 6px;
+    font-size: 0.7rem;
+    gap: 4px;
+  }
+
+  .action-btn svg {
+    font-size: 1.1rem;
+  }
 }

@@ -111,10 +111,121 @@
     gap: 36px;
   }
   .footer-brand { grid-column: 1 / -1; max-width: 100%; }
+  .footer-logo { font-size: 1.7rem; }
+  .footer-tagline { font-size: 0.8rem; }
+  .footer-description { font-size: 0.78rem; }
+  .footer-links-col h4 { font-size: 0.68rem; margin-bottom: 14px; }
+  .footer-links-col ul { gap: 10px; }
+  .footer-links-col ul li a { font-size: 0.82rem; }
+}
+
+@media (max-width: 768px) {
+  .agrisense-footer {
+    padding: 40px 4% 20px;
+  }
+  
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-bottom: 28px;
+  }
+  
+  .footer-brand {
+    grid-column: auto;
+  }
+  
+  .footer-logo {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+  }
+  
+  .footer-tagline {
+    font-size: 0.77rem;
+    margin-bottom: 10px;
+  }
+  
+  .footer-description {
+    font-size: 0.76rem;
+    line-height: 1.6;
+  }
+  
+  .footer-links-col h4 {
+    font-size: 0.65rem;
+    margin-bottom: 12px;
+  }
+  
+  .footer-links-col ul {
+    gap: 8px;
+  }
+  
+  .footer-links-col ul li a {
+    font-size: 0.8rem;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    font-size: 0.7rem;
+    margin-top: 16px;
+  }
+  
+  .footer-bottom-links {
+    flex-direction: column;
+    gap: 6px;
+  }
 }
 
 @media (max-width: 560px) {
-  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
-  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
-  .agrisense-footer { padding: 48px 4% 24px; }
+  .agrisense-footer {
+    padding: 28px 3% 16px;
+  }
+  
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-bottom: 20px;
+  }
+
+  .footer-logo {
+    font-size: 1.3rem;
+  }
+  
+  .footer-tagline {
+    font-size: 0.73rem;
+    margin-bottom: 8px;
+  }
+  
+  .footer-description {
+    font-size: 0.73rem;
+    line-height: 1.5;
+  }
+  
+  .footer-links-col h4 {
+    font-size: 0.62rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+  }
+  
+  .footer-links-col ul {
+    gap: 6px;
+  }
+  
+  .footer-links-col ul li a {
+    font-size: 0.77rem;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    font-size: 0.65rem;
+    margin-top: 12px;
+  }
+  
+  .footer-bottom-links {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.65rem;
+  }
 }
