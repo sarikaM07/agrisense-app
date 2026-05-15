@@ -1,139 +1,219 @@
+/* ===== DASHBOARD — Figma light theme ===== */
 
-.dashboard-container {
-  font-family: "Poppins", sans-serif;
-  color: #ffffff;
-  background: 
-    /* lighter overlay — more transparency and a hint of white for clarity */
-    linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(20, 90, 50, 0.75)),
-    url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1920&q=80");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  min-height: 100vh;
-  padding: 60px 8%;
-  overflow-x: hidden;
-  box-sizing: border-box;
+.dashboard-page {
+  min-height: calc(100vh - 64px);
+  background: #f4f8f0;
+  padding: 40px 5% 180px;
+  position: relative;
+  overflow: hidden;
 }
 
+.dashboard-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
 
-.dashboard-title {
-  text-align: center;
-  font-size: 38px;
+.dashboard-page-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
   font-weight: 600;
-  color: #e4ffe4;
-  margin-bottom: 50px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  letter-spacing: 1px;
+  font-style: italic;
+  color: #2a5a1a;
+  text-align: center;
+  margin-bottom: 8px;
 }
 
-.dashboard-stats {
+.dashboard-page-subtitle {
+  text-align: center;
+  color: #5a7a5a;
+  font-size: 0.9rem;
+  margin-bottom: 36px;
+}
+
+.dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-  margin-bottom: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
 }
-
 
 .dashboard-card {
-  background: rgba(255, 255, 255, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  padding: 30px 25px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  margin-bottom: 25px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px;
+  border: 1px solid #e2edd8;
+  box-shadow: 0 2px 16px rgba(60, 100, 40, 0.07);
 }
 
-.dashboard-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
-  background: rgba(255, 255, 255, 0.35);
-}
-
-
-.chart-card {
-  text-align: center;
-  padding: 40px 30px;
-}
-
-
-.dashboard-card h3 {
-  color: #0e3d25;
-  font-size: 22px;
-  margin-bottom: 20px;
+.dashboard-card h2 {
+  font-size: 1.05rem;
   font-weight: 600;
-  text-shadow: 0 1px 5px rgba(255, 255, 255, 0.3);
+  color: #2a5a1a;
+  margin-bottom: 18px;
 }
 
-/* 📋 LIST STYLES */
-.dashboard-card ul {
+.dashboard-metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e8f0e4;
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  color: #5a7a5a;
+}
+
+.metric-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #4a7c3f;
+}
+
+.progress-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 40px;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 0.82rem;
+  color: #3a5a3a;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #e8f0e4;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6aaa50, #4a7c3f);
+  border-radius: 4px;
+}
+
+.progress-pct {
+  text-align: right;
+  font-weight: 600;
+  color: #4a7c3f;
+}
+
+.crop-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.dashboard-card li {
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 12px;
-  padding: 12px 15px;
-  margin-bottom: 10px;
-  font-size: 15px;
-  color: #0b3d2e;
-  transition: background 0.3s, transform 0.2s ease;
+.crop-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #f4f8f0;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 0.88rem;
+  color: #2a3a2a;
 }
 
-.dashboard-card li:hover {
-  background: rgba(255, 255, 255, 0.6);
-  transform: scale(1.03);
+.crop-list li span:last-child {
+  font-weight: 600;
+  color: #4a7c3f;
 }
 
+.ndvi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 0.88rem;
+  color: #5a7a5a;
+}
 
-.dashboard-container::before {
-  content: "";
-  position: fixed;
-  top: 0;
+.ndvi-header strong {
+  font-size: 1.4rem;
+  color: #4a7c3f;
+}
+
+.chart-wrap {
+  height: 200px;
+}
+
+.weather-current {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  font-size: 0.88rem;
+  color: #5a7a5a;
+}
+
+.weather-temp {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2a5a1a;
+}
+
+.weather-forecast {
+  display: flex;
+  gap: 10px;
+}
+
+.forecast-item {
+  flex: 1;
+  background: #f4f8f0;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.78rem;
+  color: #5a7a5a;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.forecast-item strong {
+  color: #2a5a1a;
+  font-size: 1rem;
+}
+
+.dashboard-hills {
+  position: absolute;
+  bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(rgba(255, 255, 255, 0.15), transparent 70%);
+  right: 0;
+  height: 160px;
+  z-index: 1;
   pointer-events: none;
-  z-index: 0;
 }
 
-
-@media (max-width: 992px) {
-  .dashboard-title {
-    font-size: 32px;
-  }
+.dashboard-hill-light {
+  position: absolute;
+  bottom: 0;
+  left: -5%;
+  right: -5%;
+  height: 120px;
+  background: #c8dfa8;
+  border-radius: 50% 50% 0 0 / 70px 70px 0 0;
 }
 
-@media (max-width: 768px) {
-  .dashboard-container {
-    padding: 40px 5%;
-    background-attachment: scroll;
-  }
-
-  .dashboard-title {
-    font-size: 26px;
-    margin-bottom: 35px;
-  }
-
-  .dashboard-card {
-    padding: 25px 18px;
-  }
-
-  .chart-card {
-    padding: 30px 20px;
-  }
+.dashboard-hill-dark {
+  position: absolute;
+  bottom: 0;
+  right: -5%;
+  width: 42%;
+  height: 140px;
+  background: #4a7c3f;
+  border-radius: 50% 0 0 0 / 90px 0 0 0;
 }
 
-@media (max-width: 480px) {
-  .dashboard-card h3 {
-    font-size: 18px;
+@media (max-width: 560px) {
+  .progress-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
-
-  .dashboard-card li {
-    font-size: 14px;
-  }
+  .weather-forecast { flex-direction: column; }
 }

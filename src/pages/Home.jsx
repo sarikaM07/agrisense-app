@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../auth/AuthContext";
 import "./Home.css";
 
 import backgroundImage from "../assets/farm-field-bg.jpg";
@@ -7,6 +8,15 @@ import snakePlantImage from "../assets/snake-plant-image.jpg";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useContext(AuthContext);
+
+  const handleGetStarted = () => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    } else {
+      navigate("/signup");
+    }
+  };
 
   return (
     <div className="home-container">
@@ -47,6 +57,18 @@ const Home = () => {
               Protect long-term soil health
             </li>
           </ul>
+          <div className="hero-cta-row animate-fade-in-up delay-5">
+            <button type="button" className="hero-btn primary" onClick={handleGetStarted}>
+              {isAuthenticated ? "Go to Dashboard" : "Get Started"}
+            </button>
+            <button
+              type="button"
+              className="hero-btn secondary"
+              onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Explore Features
+            </button>
+          </div>
         </div>
       </section>
 
@@ -148,6 +170,43 @@ const Home = () => {
             className="testimonial-image-placeholder"
             style={{ backgroundImage: `url(${snakePlantImage})` }}
           />
+        </div>
+      </section>
+
+      {/* ===== CONTACT SECTION ===== */}
+      <section className="contact-section" id="contact">
+        <div className="contact-inner">
+          <h2 className="contact-title animate-fade-in-up">Contact Us</h2>
+          <p className="contact-subtitle animate-fade-in-up delay-2">
+            Have questions about AgriSense? Our team is here to help farmers get started with smarter insights.
+          </p>
+          <form
+            className="contact-form animate-fade-in-up delay-3"
+            onSubmit={e => {
+              e.preventDefault();
+              alert('Thank you! We will get back to you soon.');
+            }}
+          >
+            <div className="contact-form-row">
+              <div className="contact-field">
+                <label htmlFor="contact-name">Full Name</label>
+                <input id="contact-name" type="text" placeholder="Your name" required />
+              </div>
+              <div className="contact-field">
+                <label htmlFor="contact-email">E-Mail</label>
+                <input id="contact-email" type="email" placeholder="you@example.com" required />
+              </div>
+            </div>
+            <div className="contact-field">
+              <label htmlFor="contact-message">Message</label>
+              <textarea id="contact-message" rows={4} placeholder="How can we help?" required />
+            </div>
+            <button type="submit" className="contact-submit">Send Message</button>
+          </form>
+        </div>
+        <div className="contact-hills">
+          <div className="contact-hill-light" />
+          <div className="contact-hill-dark" />
         </div>
       </section>
 

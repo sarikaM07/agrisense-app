@@ -1,0 +1,75 @@
+.map-page {
+  min-height: calc(100vh - 64px);
+  background: #f4f8f0;
+  padding: 36px 5% 160px;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.map-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 600;
+  font-style: italic;
+  color: #2a5a1a;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.map-subtitle {
+  text-align: center;
+  color: #5a7a5a;
+  font-size: 0.88rem;
+  margin-bottom: 24px;
+}
+
+.map-container-wrap {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #e2edd8;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(60, 100, 40, 0.1);
+  height: min(520px, 65vh);
+}
+
+.map-leaflet {
+  width: 100%;
+  height: 100%;
+}
+
+.map-hills {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.map-hill-light {
+  position: absolute;
+  bottom: 0;
+  left: -5%;
+  right: -5%;
+  height: 110px;
+  background: #c8dfa8;
+  border-radius: 50% 50% 0 0 / 60px 60px 0 0;
+}
+
+.map-hill-dark {
+  position: absolute;
+  bottom: 0;
+  right: -5%;
+  width: 40%;
+  height: 130px;
+  background: #4a7c3f;
+  border-radius: 50% 0 0 0 / 80px 0 0 0;
+}
