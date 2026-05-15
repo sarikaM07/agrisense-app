@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../auth/AuthContext";
+import GetStartedButton from "../components/GetStartedButton";
 import "./Home.css";
 
 import backgroundImage from "../assets/farm-field-bg.jpg";
@@ -8,15 +8,6 @@ import snakePlantImage from "../assets/snake-plant-image.jpg";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useContext(AuthContext);
-
-  const handleGetStarted = () => {
-    if (isAuthenticated) {
-      navigate("/dashboard");
-    } else {
-      navigate("/signup");
-    }
-  };
 
   return (
     <div className="home-container">
@@ -58,9 +49,7 @@ const Home = () => {
             </li>
           </ul>
           <div className="hero-cta-row animate-fade-in-up delay-5">
-            <button type="button" className="hero-btn primary" onClick={handleGetStarted}>
-              {isAuthenticated ? "Go to Dashboard" : "Get Started"}
-            </button>
+            <GetStartedButton />
             <button
               type="button"
               className="hero-btn secondary"

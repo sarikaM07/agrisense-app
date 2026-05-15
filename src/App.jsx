@@ -17,6 +17,7 @@ import Profile from "./pages/Profile";
 
 import { AuthProvider } from "./auth/AuthContext";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import GuestOnlyRoute from "./auth/GuestOnlyRoute";
 
 function AppLayout() {
   const location = useLocation();
@@ -29,8 +30,22 @@ function AppLayout() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/signup" element={<SignUpForm />} />
+          <Route
+            path="/login"
+            element={
+              <GuestOnlyRoute>
+                <LoginForm />
+              </GuestOnlyRoute>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <GuestOnlyRoute>
+                <SignUpForm />
+              </GuestOnlyRoute>
+            }
+          />
 
           <Route
             path="/dashboard"
